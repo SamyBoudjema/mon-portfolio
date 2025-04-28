@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import backgroundImage from './assets/back_screen.avif';
 import cvFile from './assets/CV_SamyBoudjema.pdf';
 import photoProfile from './assets/photo.jpeg';
+import datadocsLogo from './assets/Datadocs_logo.png';
+import sitelLogo from './assets/logo_sitel.png';
+import chrLogo from './assets/logo_chr.png';
+// Import des logos des établissements d'éducation
+import univLogo from './assets/logo_univ.png';
+import juniaLogo from './assets/logo_junia.png';
+import jeanRostandLogo from './assets/Logo_Jean-Rostand-Roubaix.png';
+import eicLogo from './assets/logo_EIC.jpeg';
 
 function App() {
+  useEffect(() => {
+    // Gestion des onglets de parcours
+    const tabs = document.querySelectorAll('.journey-tab');
+    const panels = document.querySelectorAll('.journey-panel');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Retirer la classe active de tous les tabs et panels
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        
+        // Ajouter la classe active au tab cliqué
+        tab.classList.add('active');
+        
+        // Activer le panel correspondant
+        const panelId = `${tab.getAttribute('data-tab')}-panel`;
+        document.getElementById(panelId).classList.add('active');
+      });
+    });
+
+    // Ajustement spécial pour "Aujourd'hui"
+    // Correction: Remplacer le sélecteur jQuery non valide par un sélecteur JavaScript standard
+    const spans = document.querySelectorAll('.timeline-card-date span');
+    spans.forEach(span => {
+      if (span.textContent === "Aujourd'hui") {
+        span.style.width = '120px';
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="header">
@@ -118,10 +156,175 @@ function App() {
                 </div>
               </div>
             </div>
+            
+            <div className="timeline-section">
+              <h3 className="section-title">Mon Parcours</h3>
+              
+              <div className="journey-tabs">
+                <div className="journey-tab active" data-tab="education">
+                  <i className="fas fa-graduation-cap"></i>
+                  <span>Formation</span>
+                </div>
+                <div className="journey-tab" data-tab="experience">
+                  <i className="fas fa-briefcase"></i>
+                  <span>Expérience</span>
+                </div>
+              </div>
+              
+              <div className="journey-content">
+                {/* Formations */}
+                <div className="journey-panel active" id="education-panel">
+                  <div className="modern-timeline">
+                    {/* Formation 1 - Master */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2023 - Aujourd'hui</div>
+                        <div className="company-header">
+                          <img src={univLogo} alt="Université Catholique de Lille" className="company-logo" />
+                          <div>
+                            <h4>Master Informatique CYBER</h4>
+                            <h5><i className="fas fa-university"></i> Université Catholique de Lille</h5>
+                          </div>
+                        </div>
+                        <p>Spécialisation en développement web et cybersécurité. Projets académiques en groupe et recherche personnelle.</p>
+                        <div className="timeline-tags">
+                          <span>Web</span>
+                          <span>Cybersécurité</span>
+                          <span>Projet</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Formation 2 - Licence */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2023 - 2024</div>
+                        <div className="company-header">
+                          <img src={juniaLogo} alt="Junia" className="company-logo" />
+                          <div>
+                            <h4>Licence Informatique Transition Digitale - Data & Cybersécurité</h4>
+                            <h5><i className="fas fa-university"></i> Junia, Lille</h5>
+                          </div>
+                        </div>
+                        <p>Formation générale en informatique avec spécialisation dans la réglementation en matière de sécurité informatique</p>
+                        <div className="timeline-tags">
+                          <span>Droit et données</span>
+                          <span>Base de données</span>
+                          <span>Cybersécurité</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Formation 3 - BTS */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2019 - 2021</div>
+                        <div className="company-header">
+                          <img src={jeanRostandLogo} alt="Lycée Jean Rostand" className="company-logo" />
+                          <div>
+                            <h4>BTS Système Numérique Informatique & Réseaux</h4>
+                            <h5><i className="fas fa-university"></i> Lycée Jean Rostand, Roubaix </h5>
+                          </div>
+                        </div>
+                        <p>Formation technique avec projets pratiques en développement logiciel et web. Apprentissage des fondamentaux de l'informatique.</p>
+                        <div className="timeline-tags">
+                          <span>Programmation</span>
+                          <span>Réseaux</span>
+                          <span>SQL</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Formation 4 - Bac */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2019</div>
+                        <div className="company-header">
+                          <img src={eicLogo} alt="Lycée EIC" className="company-logo" />
+                          <div>
+                            <h4>Baccalauréat Sciences et Technologies de l'Industrie et du Développement Durable</h4>
+                            <h5><i className="fas fa-school"></i> Lycée EIC - Tourcoing</h5>
+                          </div>
+                        </div>
+                        <p>Option Informatique et Sciences du Numérique.</p>
+                        <div className="timeline-tags">
+                          <span>Python</span>
+                          <span>Logique</span>
+                          <span>Mathématiques</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Expériences */}
+                <div className="journey-panel" id="experience-panel">
+                  <div className="modern-timeline">
+                    {/* Expérience 1 - Alternance actuelle */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2023 - Aujourd'hui</div>
+                        <div className="company-header">
+                          <img src={datadocsLogo} alt="DataDocs" className="company-logo" />
+                          <div>
+                            <h4>Alternance Consultant / Développeur</h4>
+                            <h5><i className="fas fa-building"></i> DataDocs, Lezennes</h5>
+                          </div>
+                        </div>
+                        <p>Chefferie de projet et Mise en place de solution GED & Automatisation de WorkFlow</p>
+                        <div className="timeline-tags">
+                          <span>Script et Web Service - Python & APIs</span>
+                          <span>Portail Web : React.js & Vue.js</span>
+                          <span>Déploiement sur serveur - DEVOPS (Gitlab CI/CD, IIS)</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Expérience 2 - Stage */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2022</div>
+                        <div className="company-header">
+                          <img src={sitelLogo} alt="Sitel" className="company-logo" />
+                          <div>
+                            <h4>Technicien informatique</h4>
+                            <h5><i className="fas fa-building"></i> Sitel, Wasquehal</h5>
+                          </div>
+                        </div>
+                        <p>Relation client et maintenance informatique au sein du service EDF Entreprise</p>
+                        <div className="timeline-tags">
+                          <span>Relation client</span>
+                          <span>Support</span>
+                          <span>VM</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Expérience 3 - Stage */}
+                    <div className="timeline-card">
+                      <div className="timeline-card-content">
+                        <div className="timeline-date">2021</div>
+                        <div className="company-header">
+                          <img src={chrLogo} alt="Centre Hospitalier Victor Provo" className="company-logo" />
+                          <div>
+                            <h4>Stage DSI</h4>
+                            <h5><i className="fas fa-laptop-code"></i> Centre Hospitalier Victor Provo, Roubaix</h5>
+                          </div>
+                        </div>
+                        <p>Support technique aux utilisateurs (médecins, infirmiers, personnel administratif), Gestion et maintenance du parc informatique (postes, imprimantes, périphériques médicaux)</p>
+                        <div className="timeline-tags">
+                          <span>GLPI</span>
+                          <span>Windows</span>
+                          <span>Support</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
-
-        {/* Autres sections... */}
       </main>
 
       <footer>
