@@ -2,18 +2,23 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # Déclencher le workflow lors d'un push sur la branche main
+    branches: [ "main" ]  # Trigger on push to main branch
   pull_request:
-    branches: [ "main" ]  # Déclencher le workflow lors d'une pull request vers main
+    branches: [ "main" ]  # Trigger on pull requests to main
   
-  # Permet de lancer le workflow manuellement depuis l'onglet Actions
+  # Allow manual workflow runs
   workflow_dispatch:
 
-# Autoriser les jobs à cloner le dépôt et à créer un déploiement
+# Set permissions
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -34,6 +39,9 @@ jobs:
       
       - name: Build project
         run: npm run build
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
