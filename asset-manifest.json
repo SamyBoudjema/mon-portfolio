@@ -1,18 +1,23 @@
 {
   "files": {
-    "main.css": "/mon-portfolio/static/css/main.5daadc0d.css",
-    "main.js": "/mon-portfolio/static/js/main.90d93a01.js",
-    "static/js/453.50ba56e4.chunk.js": "/mon-portfolio/static/js/453.50ba56e4.chunk.js",
-    "static/media/CV_SamyBoudjema.pdf": "/mon-portfolio/static/media/CV_SamyBoudjema.31a257ef3f001781cfc5.pdf",
-    "static/media/photo.jpeg": "/mon-portfolio/static/media/photo.a645c19e44f0f7984f85.jpeg",
-    "static/media/back_screen.avif": "/mon-portfolio/static/media/back_screen.1ab3f28a2c426c9dea47.avif",
-    "index.html": "/mon-portfolio/index.html",
-    "main.5daadc0d.css.map": "/mon-portfolio/static/css/main.5daadc0d.css.map",
-    "main.90d93a01.js.map": "/mon-portfolio/static/js/main.90d93a01.js.map",
-    "453.50ba56e4.chunk.js.map": "/mon-portfolio/static/js/453.50ba56e4.chunk.js.map"
+    "main.css": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.fd3c1821.css",
+    "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.c86a5677.js",
+    "static/js/453.50ba56e4.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/453.50ba56e4.chunk.js",
+    "static/media/logo_univ.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_univ.a0fb21a352330a163b8f.png",
+    "static/media/logo_chr.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_chr.d9ec250aadda9f2b30db.png",
+    "static/media/CV_SamyBoudjema.pdf": "https://SamyBoudjema.github.io/mon-portfolio/static/media/CV_SamyBoudjema.31a257ef3f001781cfc5.pdf",
+    "static/media/photo.jpeg": "https://SamyBoudjema.github.io/mon-portfolio/static/media/photo.a645c19e44f0f7984f85.jpeg",
+    "static/media/Logo_Jean-Rostand-Roubaix.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/Logo_Jean-Rostand-Roubaix.8bd647d1529fe0abf025.png",
+    "static/media/back_screen.avif": "https://SamyBoudjema.github.io/mon-portfolio/static/media/back_screen.1ab3f28a2c426c9dea47.avif",
+    "static/media/Datadocs_logo.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/Datadocs_logo.6f2c5a24c4afe2cb428a.png",
+    "static/media/logo_sitel.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_sitel.ade202b3a91b525b0635.png",
+    "index.html": "https://SamyBoudjema.github.io/mon-portfolio/index.html",
+    "main.fd3c1821.css.map": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.fd3c1821.css.map",
+    "main.c86a5677.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.c86a5677.js.map",
+    "453.50ba56e4.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/453.50ba56e4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5daadc0d.css",
-    "static/js/main.90d93a01.js"
+    "static/css/main.fd3c1821.css",
+    "static/js/main.c86a5677.js"
   ]
 }
