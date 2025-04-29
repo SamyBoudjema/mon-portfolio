@@ -365,12 +365,12 @@ footer::before {
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: 3rem 2rem; /* Réduit le padding vertical de 5rem à 3rem */
 }
 
 .section-title {
   font-size: 2.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem; /* Réduit la marge du titre de 3rem à 2rem */
   color: var(--primary);
   position: relative;
   text-align: center;
@@ -380,7 +380,7 @@ footer::before {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -1rem;
+  bottom: -0.7rem; /* Ajusté de -1rem à -0.7rem */
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
@@ -394,7 +394,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 3rem 0;
+  padding: 2rem 0; /* Réduit le padding de 3rem à 2rem */
 }
 
 .projects::before {
@@ -411,8 +411,8 @@ footer::before {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 20px;
+  gap: 25px; /* Légèrement réduit de 30px à 25px */
+  margin-top: 1.5rem; /* Ajusté de 20px */
 }
 
 .project-card {
@@ -610,7 +610,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 6rem 0 3rem;
+  padding: 3rem 0 2rem; /* Réduit le padding de 6rem 0 3rem à 3rem 0 2rem */
 }
 
 .about::before {
@@ -848,7 +848,7 @@ footer::before {
 
 /* Timeline Section */
 .timeline-section {
-  margin-top: 40px;
+  margin-top: 2rem; /* Réduit de 40px à 2rem */
   padding: 0;
   width: 100%;
 }
@@ -858,7 +858,7 @@ footer::before {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 2rem; /* Réduit de 40px à 2rem */
 }
 
 .journey-tab {
@@ -950,7 +950,7 @@ footer::before {
 .modern-timeline {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 2rem; /* Réduit de 40px à 2rem */
   position: relative;
   padding: 20px 0;
 }
@@ -1026,8 +1026,8 @@ footer::before {
   position: relative;
   overflow: visible;
   margin-top: 15px;
-  margin-bottom: 40px;
-  min-height: 250px;
+  margin-bottom: 25px; /* Réduit de 40px à 25px */
+  min-height: 200px; /* Réduit de 250px à 200px */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1645,8 +1645,8 @@ footer::before {
   
   /* ID Card */
   .profile-photo {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
   
   .id-card-header {
@@ -1881,5 +1881,218 @@ footer::before {
   
   footer {
     padding-bottom: calc(2rem + 70px);
+  }
+}
+
+/* Section Compétences */
+.skills {
+  background-color: var(--dark);
+  color: #eaeaea;
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 0 2rem; /* Réduit le padding de 5rem à 3rem 0 2rem */
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--primary), transparent);
+  opacity: 0.5;
+}
+
+.skills-categories {
+  margin-top: 1.5rem; /* Réduit de 2rem à 1.5rem */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.skills-category {
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(25, 30, 45, 0.9), rgba(15, 20, 30, 0.95));
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--glow-blue));
+  z-index: 1;
+}
+
+.skills-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+.skills-category h3 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.skills-category h3 i {
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, var(--primary), var(--glow-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.skills-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 80px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+}
+
+.skill-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 28, 47, 0.7);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.skill-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-item:hover .skill-icon {
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.skill-item:hover .skill-icon::after {
+  opacity: 1;
+  animation: pulse 2s infinite;
+}
+
+.skill-icon i {
+  font-size: 1.8rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover .skill-icon i {
+  transform: scale(1.1);
+  color: #fff;
+  text-shadow: 0 0 10px var(--primary);
+}
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ccd6f6;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.skill-item:hover .skill-name {
+  color: #fff;
+  text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+}
+
+/* Media queries pour la section compétences */
+@media (max-width: 992px) {
+  .skills-categories {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-category {
+    padding: 1.5rem;
+  }
+  
+  .skills-items {
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .skill-item {
+    width: 70px;
+  }
+  
+  .skill-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .skill-icon i {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-categories {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-category {
+    padding: 1.25rem;
+  }
+  
+  .skills-items {
+    justify-content: space-between;
+  }
+  
+  .skill-item {
+    width: 60px;
+  }
+  
+  .skill-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .skill-icon i {
+    font-size: 1.4rem;
+  }
+  
+  .skill-name {
+    font-size: 0.75rem;
   }
 }
