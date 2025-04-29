@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.1eedc304.css",
+    "main.css": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.6f2a5bb7.css",
     "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.12351ccb.js",
     "static/js/453.50ba56e4.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/453.50ba56e4.chunk.js",
     "static/media/logo_univ.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_univ.a0fb21a352330a163b8f.png",
@@ -12,12 +12,12 @@
     "static/media/Datadocs_logo.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/Datadocs_logo.6f2c5a24c4afe2cb428a.png",
     "static/media/logo_sitel.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_sitel.ade202b3a91b525b0635.png",
     "index.html": "https://SamyBoudjema.github.io/mon-portfolio/index.html",
-    "main.1eedc304.css.map": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.1eedc304.css.map",
+    "main.6f2a5bb7.css.map": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.6f2a5bb7.css.map",
     "main.12351ccb.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.12351ccb.js.map",
     "453.50ba56e4.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/453.50ba56e4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1eedc304.css",
+    "static/css/main.6f2a5bb7.css",
     "static/js/main.12351ccb.js"
   ]
 }
