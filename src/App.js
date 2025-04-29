@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import './App.css';
+
 import backgroundImage from './assets/back_screen.avif';
 import cvFile from './assets/CV_SamyBoudjema.pdf';
 import photoProfile from './assets/photo.jpeg';
+
 import datadocsLogo from './assets/Datadocs_logo.png';
 import sitelLogo from './assets/logo_sitel.png';
 import chrLogo from './assets/logo_chr.png';
-// Import des logos des établissements d'éducation
 import univLogo from './assets/logo_univ.png';
 import juniaLogo from './assets/logo_junia.png';
 import jeanRostandLogo from './assets/Logo_Jean-Rostand-Roubaix.png';
@@ -14,27 +15,21 @@ import eicLogo from './assets/logo_EIC.jpeg';
 
 function App() {
   useEffect(() => {
-    // Gestion des onglets de parcours
     const tabs = document.querySelectorAll('.journey-tab');
     const panels = document.querySelectorAll('.journey-panel');
     
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        // Retirer la classe active de tous les tabs et panels
         tabs.forEach(t => t.classList.remove('active'));
         panels.forEach(p => p.classList.remove('active'));
         
-        // Ajouter la classe active au tab cliqué
         tab.classList.add('active');
         
-        // Activer le panel correspondant
         const panelId = `${tab.getAttribute('data-tab')}-panel`;
         document.getElementById(panelId).classList.add('active');
       });
     });
 
-    // Ajustement spécial pour "Aujourd'hui"
-    // Correction: Remplacer le sélecteur jQuery non valide par un sélecteur JavaScript standard
     const spans = document.querySelectorAll('.timeline-card-date span');
     spans.forEach(span => {
       if (span.textContent === "Aujourd'hui") {
@@ -48,8 +43,8 @@ function App() {
       <header className="header">
         <nav>
           <ul>
-            <li><a href="#a-propos">À propos</a></li>
-            <li><a href="#projets">Projets</a></li>
+            <li><a href="#a-propos">À propos de moi</a></li>
+            <li><a href="#projets">Mes projets</a></li>
             <li><a href="#competences">Compétences</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -325,6 +320,102 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section id="projets" className="projects">
+          <div className="section-container">
+            <h2 className="section-title">Mes Projets</h2>
+            
+            <div className="projects-grid">
+              {/* Projet 1 - GitHub */}
+              <div className="project-card">
+                <div className="project-header">
+                  <h4>Portfolio</h4>
+                  <div className="project-links">
+                    <a href="https://github.com/SamyBoudjema/mon-portfolio" target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-github" title="GitHub"></i>
+                    </a>
+                    {/* Correction du lien invalide avec un URL réel ou suppression */}
+                    <a href="https://samyboudjema.fr" target="_blank" rel="noopener noreferrer">
+                      <i className="fas fa-external-link-alt" title="Site live"></i>
+                    </a>
+                  </div>
+                </div>
+                
+                <p className="project-description">Portfolio personnel développé avec React.js pour présenter mon parcours, mes compétences et mes projets.</p>
+                
+                <div className="project-tech">
+                  <span>React.js</span>
+                  <span>CSS3</span>
+                  <span>JavaScript</span>
+                </div>
+              </div>
+              
+              {/* Projet 2 - GitHub */}
+              <div className="project-card">
+                <div className="project-header">
+                  <h4>Site E-commerce</h4>
+                  <div className="project-links">
+                    <a href="https://github.com/SamyBoudjema/E-commerce" target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-github" title="GitHub"></i>
+                    </a>
+                  </div>
+                </div>
+                
+                <p className="project-description">Application web React JS d'un site de vente de sneakers.</p>
+                
+                <div className="project-tech">
+                  <span>React.js</span>
+                  <span>JSON</span>
+                  <span>HTML/CSS</span>
+                </div>
+              </div>
+              
+              {/* Projet 3 - GitHub */}
+              <div className="project-card">
+                <div className="project-header">
+                  <h4>LocaBus</h4>
+                  <div className="project-links">
+                    <a href="https://github.com/SamyBoudjema/LocaBus" target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-github" title="GitHub"></i>
+                    </a>
+                  </div>
+                </div>
+                
+                <p className="project-description">LocaBus est une application de gestion de bus et de leurs contrats de location, intégrant la création de contrats PDF et leur signature électronique via DocuSign.</p>
+                
+                <div className="project-tech">
+                  <span>Python</span>
+                  <span>API</span>
+                  <span>Signature électronique</span>
+                </div>
+              </div>
+              
+              {/* Projet 4 - GitLab */}
+              <div className="project-card">
+                <div className="project-header">
+                  <h4>IMG Translate</h4>
+                  <div className="project-links">
+                    <a href="https://gitlab.com/master-1-cyber/anglais/anglais-site" target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-gitlab" title="GitLab"></i>
+                    </a>
+                    <a href="https://anglais-trad-46dgn.ondigitalocean.app/" target="_blank" rel="noopener noreferrer">
+                    <i className="fas fa-external-link-alt" title="Site live"></i>
+                    </a>
+                  </div>
+                </div>
+                
+                <p className="project-description">IMG Description</p>
+                
+                <div className="project-tech">
+                  <span>HTML/CSS</span>
+                  <span>API OCR</span>
+                  <span>DEVOPS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <footer>

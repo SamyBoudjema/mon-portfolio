@@ -2,13 +2,12 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # Trigger on push to main branch
+    branches: [ "main" ]
   
-  # Allow manual workflow runs
   workflow_dispatch:
 
 permissions:
-  contents: write  # Nécessaire pour pousser vers la branche gh-pages
+  contents: write
 
 jobs:
   build-and-deploy:
