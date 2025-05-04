@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import emailjs from 'emailjs-com';
 
 import backgroundImage from './assets/back_screen.avif';
 import cvFile from './assets/CV_SamyBoudjema.pdf';
@@ -12,6 +13,131 @@ import univLogo from './assets/logo_univ.png';
 import juniaLogo from './assets/logo_junia.png';
 import jeanRostandLogo from './assets/Logo_Jean-Rostand-Roubaix.png';
 import eicLogo from './assets/logo_EIC.jpeg';
+
+function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = 'Nom et Prénom sont obligatoires';
+    if (!formData.email) {
+      newErrors.email = 'Adresse e-mail est obligatoire';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Adresse e-mail invalide';
+    }
+    return newErrors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    emailjs
+      .send(
+        'service_id', 
+        'template_id', 
+        {
+          ...formData,
+          to_email: 'samy.bdm16@gmail.com'
+        },
+        'user_id' 
+      )
+      .then(
+        () => {
+          alert('Message envoyé avec succès !');
+          setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+          setErrors({});
+        },
+        (error) => {
+          alert('Une erreur est survenue, veuillez réessayer.');
+          console.error(error);
+        }
+      );
+  };
+
+  return (
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <div className="form-header">
+        <h3>Envoyez-moi un message</h3>
+      </div>
+      
+      <div className="input-group">
+        <label>Nom et Prénom *</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        {errors.name && <span className="error">{errors.name}</span>}
+      </div>
+      
+      <div className="input-group">
+        <label>Adresse e-mail *</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        {errors.email && <span className="error">{errors.email}</span>}
+      </div>
+      
+      <div className="input-group">
+        <label>Entreprise</label>
+        <input
+          type="text"
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="input-group">
+        <label>Numéro de téléphone</label>
+        <input
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="message-group">
+        <label>Message</label>
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Saisissez votre message ici..."
+        ></textarea>
+      </div>
+      
+      <div className="button-group">
+        <button type="submit">Envoyer</button>
+      </div>
+    </form>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -56,7 +182,6 @@ function App() {
           <div className="hero-content">
             <h1 className="hero-name" data-text="Samy Boudjema">Samy Boudjema</h1>
             <h2 className="hero-title">Développeur Full Stack</h2>
-            <h3 className="hero-subtitle">Alternant en Informatique</h3>
             
             <div className="social-icons">
               <a href="https://www.linkedin.com/in/samy-boudjema-814076218/" target="_blank" rel="noopener noreferrer" className="social-icon">
@@ -332,7 +457,6 @@ function App() {
                     <a href="https://github.com/SamyBoudjema/mon-portfolio" target="_blank" rel="noopener noreferrer">
                       <i className="fab fa-github" title="GitHub"></i>
                     </a>
-                    {/* Correction du lien invalide avec un URL réel ou suppression */}
                     <a href="https://samyboudjema.fr" target="_blank" rel="noopener noreferrer">
                       <i className="fas fa-external-link-alt" title="Site live"></i>
                     </a>
@@ -371,20 +495,26 @@ function App() {
               {/* Projet 3 - GitHub */}
               <div className="project-card">
                 <div className="project-header">
-                  <h4>LocaBus</h4>
+                  <h4>Projet 3</h4>
                   <div className="project-links">
-                    <a href="https://github.com/SamyBoudjema/LocaBus" target="_blank" rel="noopener noreferrer">
-                      <i className="fab fa-github" title="GitHub"></i>
-                    </a>
+                    {/* Remplacement du lien par un bouton stylisé */}
+                    <button 
+                      className="project-link-button" 
+                      onClick={() => {}} 
+                      aria-label="Voir le code sur GitHub (non disponible)"
+                      title="GitHub"
+                    >
+                      <i className="fab fa-github"></i>
+                    </button>
                   </div>
                 </div>
                 
-                <p className="project-description">LocaBus est une application de gestion de bus et de leurs contrats de location, intégrant la création de contrats PDF et leur signature électronique via DocuSign.</p>
+                <p className="project-description">Description du projet 3</p>
                 
                 <div className="project-tech">
-                  <span>Python</span>
-                  <span>API</span>
-                  <span>Signature électronique</span>
+                  <span>Technologie 1</span>
+                  <span>Technologie 2</span>
+                  <span>Technologie 3</span>
                 </div>
               </div>
               
@@ -582,6 +712,13 @@ function App() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="contact" className="contact">
+          <div className="section-container">
+            <h2 className="section-title">Contact</h2>
+            <ContactForm />
           </div>
         </section>
       </main>

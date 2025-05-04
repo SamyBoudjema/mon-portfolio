@@ -119,7 +119,6 @@ html, body {
   width: 100%;
 }
 
-/* Hero Section */
 .hero {
   height: 100vh;
   display: flex;
@@ -131,6 +130,8 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  image-rendering: auto;
   overflow: hidden;
 }
 
@@ -144,7 +145,7 @@ html, body {
 }
 
 .hero::before {
-  background: rgba(5, 7, 12, 0.75);
+  background: rgba(5, 7, 12, 0.85);
   z-index: 0;
 }
 
@@ -365,12 +366,12 @@ footer::before {
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 2rem; /* Réduit le padding vertical de 5rem à 3rem */
+  padding: 3rem 2rem;
 }
 
 .section-title {
   font-size: 2.5rem;
-  margin-bottom: 2rem; /* Réduit la marge du titre de 3rem à 2rem */
+  margin-bottom: 2rem;
   color: var(--primary);
   position: relative;
   text-align: center;
@@ -380,7 +381,7 @@ footer::before {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -0.7rem; /* Ajusté de -1rem à -0.7rem */
+  bottom: -0.7rem; 
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
@@ -394,7 +395,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 2rem 0; /* Réduit le padding de 3rem à 2rem */
+  padding: 2rem 0;
 }
 
 .projects::before {
@@ -411,8 +412,8 @@ footer::before {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px; /* Légèrement réduit de 30px à 25px */
-  margin-top: 1.5rem; /* Ajusté de 20px */
+  gap: 25px;
+  margin-top: 1.5rem;
 }
 
 .project-card {
@@ -505,6 +506,34 @@ footer::before {
 }
 
 .project-links a:hover, .project-status:hover {
+  color: var(--primary);
+  transform: translateY(-4px) scale(1.1);
+  background: rgba(10, 15, 25, 0.8);
+  border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+/* Styles pour le bouton projet qui remplace les liens GitHub */
+.project-link-button {
+  background: none;
+  border: none;
+  color: var(--gray-light);
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(15, 20, 30, 0.5);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  padding: 0;
+  cursor: pointer;
+}
+
+.project-link-button:hover {
   color: var(--primary);
   transform: translateY(-4px) scale(1.1);
   background: rgba(10, 15, 25, 0.8);
@@ -610,7 +639,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 3rem 0 2rem; /* Réduit le padding de 6rem 0 3rem à 3rem 0 2rem */
+  padding: 3rem 0 2rem; 
 }
 
 .about::before {
@@ -634,6 +663,7 @@ footer::before {
 .about-text {
   font-size: 1.1rem;
   line-height: 1.8;
+  text-align: justify; 
 }
 
 .about-text p {
@@ -848,7 +878,7 @@ footer::before {
 
 /* Timeline Section */
 .timeline-section {
-  margin-top: 2rem; /* Réduit de 40px à 2rem */
+  margin-top: 2rem;
   padding: 0;
   width: 100%;
 }
@@ -858,7 +888,7 @@ footer::before {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 2rem; /* Réduit de 40px à 2rem */
+  margin-bottom: 2rem;
 }
 
 .journey-tab {
@@ -950,7 +980,7 @@ footer::before {
 .modern-timeline {
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Réduit de 40px à 2rem */
+  gap: 2rem; 
   position: relative;
   padding: 20px 0;
 }
@@ -1026,8 +1056,8 @@ footer::before {
   position: relative;
   overflow: visible;
   margin-top: 15px;
-  margin-bottom: 25px; /* Réduit de 40px à 25px */
-  min-height: 200px; /* Réduit de 250px à 200px */
+  margin-bottom: 25px; 
+  min-height: 200px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1719,12 +1749,10 @@ footer::before {
 }
 
 @media (max-width: 480px) {
-  /* Hero */
   .hero-name {
     font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
   
-  /* Journey tabs */
   .journey-tabs {
     gap: 8px;
   }
@@ -1743,7 +1771,6 @@ footer::before {
     font-size: 0.8rem;
   }
   
-  /* Timeline */
   .timeline-card {
     padding-left: 40px;
   }
@@ -1772,7 +1799,6 @@ footer::before {
     font-size: 0.9rem;
   }
   
-  /* Header - Navbar mobile plus compact */
   .header nav ul li a {
     font-size: 0.7rem;
   }
@@ -1782,10 +1808,9 @@ footer::before {
   }
 }
 
-/* Fix pour le menu fixe sur mobile */
 @media (max-width: 768px) {
   main {
-    padding-bottom: 70px; /* Espace pour le menu fixe en bas */
+    padding-bottom: 70px;
   }
   
   footer {
@@ -1793,7 +1818,6 @@ footer::before {
   }
 }
 
-/* Ajustements spécifiques pour les très petits écrans */
 @media (max-width: 360px) {
   .section-title {
     font-size: 1.8rem;
@@ -1865,16 +1889,15 @@ footer::before {
     display: block;
   }
   
-  .header nav ul li:nth-child(1) a::before { content: '\f007'; } /* User icon */
-  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; } /* Briefcase icon */
-  .header nav ul li:nth-child(3) a::before { content: '\f19d'; } /* Graduation cap icon */
-  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; } /* Envelope icon */
+  .header nav ul li:nth-child(1) a::before { content: '\f007'; }
+  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; }
+  .header nav ul li:nth-child(3) a::before { content: '\f19d'; }
+  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; }
   
   .header nav ul li a::after {
     display: none;
   }
   
-  /* Ajout d'espace au bas du contenu pour éviter que le menu fixe ne le masque */
   main {
     padding-bottom: 80px;
   }
@@ -1890,7 +1913,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 3rem 0 2rem; /* Réduit le padding de 5rem à 3rem 0 2rem */
+  padding: 3rem 0 2rem;
 }
 
 .skills::before {
@@ -1905,7 +1928,7 @@ footer::before {
 }
 
 .skills-categories {
-  margin-top: 1.5rem; /* Réduit de 2rem à 1.5rem */
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
@@ -2094,5 +2117,201 @@ footer::before {
   
   .skill-name {
     font-size: 0.75rem;
+  }
+}
+
+.contact-form {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(25, 30, 45, 0.9), rgba(15, 20, 30, 0.95));
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  color: #eaeaea;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.contact-form .form-header {
+  grid-column: 1 / -1;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.contact-form .form-header h3 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.contact-form .form-header p {
+  color: #ccd6f6;
+  line-height: 1.6;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.contact-form .input-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.contact-form .message-group {
+  grid-column: 1 / -1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form .message-group label {
+  font-size: 1.1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.contact-form .message-group label::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--glow-blue));
+  border-radius: 2px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  background: var(--dark);
+  color: #eaeaea;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.contact-form textarea {
+  flex-grow: 1;
+  resize: none;
+  height: 220px; 
+  background: rgba(10, 14, 23, 0.8);
+  border: 2px solid rgba(100, 255, 218, 0.2);
+  line-height: 1.5;
+  font-size: 1rem;
+  padding: 1rem;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.contact-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.1);
+  background: rgba(10, 14, 23, 0.9);
+}
+
+.contact-form .button-group {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.contact-form button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: var(--primary);
+  color: var(--dark);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+
+.contact-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.contact-form button:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 0 5px rgba(100, 255, 218, 0.2);
+  transform: translateY(-3px);
+}
+
+.contact-form button:hover::before {
+  left: 0;
+}
+
+.contact-form .error {
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .contact-form {
+    padding: 2.5rem;
+  }
+  
+  .contact-form textarea {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .contact-form .form-header h3 {
+    font-size: 1.8rem;
+  }
+  
+  .contact-form .form-header p {
+    max-width: 100%;
+  }
+  
+  .contact-form textarea {
+    min-height: 250px;
   }
 }
