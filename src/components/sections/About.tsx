@@ -8,10 +8,10 @@ import juniaLogo from '../../assets/logo_junia.png';
 import jeanRostandLogo from '../../assets/Logo_Jean-Rostand-Roubaix.png';
 import eicLogo from '../../assets/logo_EIC.jpeg';
 
-function About() {
+const About: React.FC = () => {
   useEffect(() => {
-    const tabs = document.querySelectorAll('.journey-tab');
-    const panels = document.querySelectorAll('.journey-panel');
+    const tabs = document.querySelectorAll<HTMLElement>('.journey-tab');
+    const panels = document.querySelectorAll<HTMLElement>('.journey-panel');
     
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
@@ -21,11 +21,14 @@ function About() {
         tab.classList.add('active');
         
         const panelId = `${tab.getAttribute('data-tab')}-panel`;
-        document.getElementById(panelId).classList.add('active');
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.classList.add('active');
+        }
       });
     });
 
-    const spans = document.querySelectorAll('.timeline-card-date span');
+    const spans = document.querySelectorAll<HTMLSpanElement>('.timeline-card-date span');
     spans.forEach(span => {
       if (span.textContent === "Aujourd'hui") {
         span.style.width = '120px';
@@ -57,7 +60,7 @@ function About() {
               <img src={photoProfile} alt="Samy Boudjema" className="profile-photo" />
               <div className="id-card-header-text">
                 <h3>Samy Boudjema</h3>
-                <span className="id-card-title">Développeur Full Stack</span>
+                <span className="id-card-title">Apprenti Ingénieur Cybersécurité</span>
               </div>
             </div>
             
@@ -85,7 +88,7 @@ function About() {
                 
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Âge</span>
-                  <span className="id-card-value">23 ans</span>
+                  <span className="id-card-value">24 ans</span>
                 </div>
                 
                 <div className="id-card-grid-item">
@@ -276,6 +279,6 @@ function About() {
       </div>
     </section>
   );
-}
+};
 
 export default About;

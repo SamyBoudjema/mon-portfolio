@@ -22,7 +22,7 @@
   --glow-blue: #18b6f6;
   --purple: #bd00ff;
   
-  /* Éléments de design */
+  
   --transition: all 0.3s ease;
   --border-radius: 4px;
   --shadow-sm: 0 1px 3px rgba(100, 255, 218, 0.1);
@@ -31,7 +31,6 @@
   --glow: 0 0 15px rgba(100, 255, 218, 0.6);
 }
 
-/* Animations */
 @keyframes gradientFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 @keyframes starTwinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 @keyframes floatEffect { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -41,7 +40,6 @@
 @keyframes borderGlow { 0%, 100% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); } 50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); } }
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-/* Base */
 html, body {
   overflow-x: hidden;
   width: 100%;
@@ -60,7 +58,6 @@ html, body {
   width: 100%;
 }
 
-/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -219,7 +216,6 @@ html, body {
   color: #ccd6f6;
 }
 
-/* Social Icons */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -276,7 +272,6 @@ html, body {
   z-index: 1;
 }
 
-/* Buttons */
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
@@ -340,7 +335,6 @@ html, body {
   box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
 }
 
-/* Footer */
 footer {
   background-color: var(--darker);
   color: #8892b0;
@@ -362,7 +356,6 @@ footer::before {
   background: linear-gradient(to right, transparent, var(--primary), transparent);
 }
 
-/* Sections communes */
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -389,7 +382,6 @@ footer::before {
   border-radius: 2px;
 }
 
-/* Section Projets */
 .projects {
   background-color: var(--darker);
   color: #eaeaea;
@@ -513,7 +505,6 @@ footer::before {
   box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
 }
 
-/* Styles pour le bouton projet qui remplace les liens GitHub */
 .project-link-button {
   background: none;
   border: none;
@@ -561,22 +552,15 @@ footer::before {
 }
 
 .project-tech span {
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  background: rgba(100, 255, 218, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(100, 255, 218, 0.1);
   color: var(--primary);
   border: 1px solid rgba(100, 255, 218, 0.2);
-  letter-spacing: 0.5px;
-}
-
-.project-tech span:hover {
-  background: rgba(100, 255, 218, 0.15);
-  transform: translateY(-2px);
-  border-color: rgba(100, 255, 218, 0.4);
-  box-shadow: 0 5px 12px rgba(100, 255, 218, 0.15);
+  letter-spacing: 0.3px;
+  
 }
 
 #github-projects-panel .project-card,
@@ -587,40 +571,6 @@ footer::before {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.project-tech span {
-  padding: 6px 14px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(100, 255, 218, 0.1);
-  color: var(--primary);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-}
-
-.project-tech span:hover {
-  background: rgba(100, 255, 218, 0.2);
-  transform: translateY(-2px);
-  border-color: rgba(100, 255, 218, 0.4);
-}
-
-/* Suppression des styles spécifiques pour les technologies GitHub/GitLab */
-#github-projects-panel .project-tech span,
-#gitlab-projects-panel .project-tech span,
-#github-projects-panel .project-tech span:hover,
-#gitlab-projects-panel .project-tech span:hover {
-  background: rgba(100, 255, 218, 0.1);
-  color: var(--primary);
-  border-color: rgba(100, 255, 218, 0.2);
-}
-
-#github-projects-panel .project-tech span:hover,
-#gitlab-projects-panel .project-tech span:hover {
-  background: rgba(100, 255, 218, 0.2);
-  border-color: rgba(100, 255, 218, 0.4);
-}
-
-/* Media queries pour la section Projets */
 @media (max-width: 992px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -633,7 +583,6 @@ footer::before {
   }
 }
 
-/* Section À propos */
 .about {
   background-color: var(--dark);
   color: #eaeaea;
@@ -671,7 +620,6 @@ footer::before {
   color: #ccd6f6;
 }
 
-/* Carte d'identité */
 .id-card {
   background: linear-gradient(145deg, rgba(25, 30, 45, 0.9), rgba(15, 20, 30, 0.95));
   border-radius: 12px;
@@ -767,7 +715,6 @@ footer::before {
   letter-spacing: 0.5px;
 }
 
-/* ID Card Elements */
 .id-card-body {
   padding: 1.25rem;
   position: relative;
@@ -788,13 +735,7 @@ footer::before {
   border-radius: 6px;
   background: rgba(10, 15, 25, 0.5);
   border: 1px solid rgba(100, 255, 218, 0.15);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.id-card-grid-item:hover, .id-card-contact-item:hover, .id-card-interests-container:hover {
-  border-color: rgba(100, 255, 218, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  
 }
 
 .id-card-label {
@@ -858,32 +799,21 @@ footer::before {
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: rgba(20, 28, 47, 0.6);
+  background: rgba(20, 28, 47, 0.5);
   border-radius: 50%;
   color: var(--primary);
   font-size: 1rem;
-  transition: all 0.3s ease;
   border: 1px solid rgba(100, 255, 218, 0.15);
   margin: 0 auto;
+  
 }
 
-.interest-icon:hover {
-  background: rgba(100, 255, 218, 0.15);
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
-  cursor: pointer;
-  border-color: var(--primary);
-  animation: pulse 1s infinite;
-}
-
-/* Timeline Section */
 .timeline-section {
   margin-top: 2rem;
   padding: 0;
   width: 100%;
 }
 
-/* Timeline tabs */
 .journey-tabs {
   display: flex;
   justify-content: center;
@@ -961,7 +891,6 @@ footer::before {
   transform: scaleX(1);
 }
 
-/* Timeline content panels */
 .journey-content {
   position: relative;
   min-height: 400px;
@@ -976,7 +905,6 @@ footer::before {
   display: block;
 }
 
-/* Timeline styling */
 .modern-timeline {
   display: flex;
   flex-direction: column;
@@ -1046,7 +974,6 @@ footer::before {
   box-shadow: 0 0 0 6px rgba(100, 255, 218, 0.3), 0 0 15px var(--primary);
 }
 
-/* Timeline card content */
 .timeline-card-content {
   background: linear-gradient(145deg, rgba(25, 30, 45, 0.9), rgba(15, 20, 30, 0.95));
   border-radius: 12px;
@@ -1114,7 +1041,6 @@ footer::before {
   box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
 }
 
-/* Timeline card text elements */
 .timeline-card-content h4 {
   font-size: 1.4rem;
   color: #fff;
@@ -1135,7 +1061,6 @@ footer::before {
   gap: 8px;
 }
 
-/* Company header in experience cards */
 .company-header {
   display: flex;
   align-items: center;
@@ -1172,7 +1097,6 @@ footer::before {
   flex-grow: 1;
 }
 
-/* Timeline tags */
 .timeline-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1182,43 +1106,28 @@ footer::before {
 }
 
 .timeline-tags span {
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
   display: inline-block;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   border: 1px solid transparent;
+  
 }
 
 #education-panel .timeline-tags span {
-  background: rgba(90, 84, 255, 0.15);
+  background: rgba(90, 84, 255, 0.12);
   color: var(--secondary);
-  border-color: rgba(90, 84, 255, 0.3);
-  box-shadow: 0 0 10px rgba(90, 84, 255, 0.1);
-}
-
-#education-panel .timeline-tags span:hover {
-  background: rgba(90, 84, 255, 0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(90, 84, 255, 0.3);
+  border-color: rgba(90, 84, 255, 0.25);
 }
 
 #experience-panel .timeline-tags span {
-  background: rgba(100, 255, 218, 0.15);
+  background: rgba(100, 255, 218, 0.12);
   color: var(--primary);
-  border-color: rgba(100, 255, 218, 0.3);
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.1);
+  border-color: rgba(100, 255, 218, 0.25);
 }
 
-#experience-panel .timeline-tags span:hover {
-  background: rgba(100, 255, 218, 0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
-}
-
-/* Media Queries - regroupées par taille d'écran */
 @media (max-width: 992px) {
   .about-content {
     grid-template-columns: 1fr;
@@ -1472,7 +1381,6 @@ footer::before {
   }
 }
 
-/* Media Queries améliorées pour la responsivité */
 @media (max-width: 1200px) {
   .section-container {
     padding: 5rem 1.5rem;
@@ -1502,7 +1410,7 @@ footer::before {
 }
 
 @media (max-width: 768px) {
-  /* Navigation mobile */
+  
   .header {
     padding: 1rem 0;
   }
@@ -1543,16 +1451,16 @@ footer::before {
     margin-bottom: 0.3rem;
   }
   
-  .header nav ul li:nth-child(1) a::before { content: '\f007'; } /* User icon */
-  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; } /* Briefcase icon */
-  .header nav ul li:nth-child(3) a::before { content: '\f19d'; } /* Graduation cap icon */
-  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; } /* Envelope icon */
+  .header nav ul li:nth-child(1) a::before { content: '\f007'; } 
+  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; } 
+  .header nav ul li:nth-child(3) a::before { content: '\f19d'; } 
+  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; } 
   
   .header nav ul li a::after {
     display: none;
   }
   
-  /* Hero section */
+  
   .hero {
     padding: 0 1rem;
   }
@@ -1579,7 +1487,7 @@ footer::before {
     margin-bottom: 2.5rem;
   }
   
-  /* Section À propos */
+  
   .section-container {
     padding: 4rem 1.5rem;
   }
@@ -1589,7 +1497,7 @@ footer::before {
     margin-bottom: 2.5rem;
   }
   
-  /* Parcours */
+  
   .journey-tabs {
     flex-direction: row;
     gap: 10px;
@@ -1600,7 +1508,7 @@ footer::before {
     padding: 10px 15px;
   }
   
-  /* Timeline */
+  
   .modern-timeline {
     gap: 30px;
   }
@@ -1653,7 +1561,7 @@ footer::before {
 }
 
 @media (max-width: 576px) {
-  /* Hero */
+  
   .hero-name {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
@@ -1673,7 +1581,7 @@ footer::before {
     font-size: 1.3rem;
   }
   
-  /* ID Card */
+  
   .profile-photo {
     width: 70px;
     height: 70px;
@@ -1711,7 +1619,7 @@ footer::before {
     font-size: 0.8rem;
   }
   
-  /* Timeline */
+  
   .timeline-card::before {
     left: 11px;
     top: 20px;
@@ -1727,7 +1635,7 @@ footer::before {
     padding: 6px 10px;
   }
   
-  /* Projets */
+  
   .project-card {
     padding: 20px;
   }
@@ -1907,7 +1815,6 @@ footer::before {
   }
 }
 
-/* Section Compétences */
 .skills {
   background-color: var(--dark);
   color: #eaeaea;
@@ -2058,7 +1965,6 @@ footer::before {
   text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
 }
 
-/* Media queries pour la section compétences */
 @media (max-width: 992px) {
   .skills-categories {
     gap: 1.5rem;
@@ -2285,7 +2191,6 @@ footer::before {
   display: block;
 }
 
-/* Responsive adjustments */
 @media (max-width: 992px) {
   .contact-form {
     padding: 2.5rem;

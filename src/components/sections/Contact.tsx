@@ -4,9 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import emailjs from '@emailjs/browser';
 
-function ContactForm() {
+const ContactForm: React.FC = () => {
   // Créer une référence au formulaire pour EmailJS
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
+  
   const schema = yup
     .object({
       name: yup
@@ -20,10 +21,12 @@ function ContactForm() {
         .required('Adresse e-mail est obligatoire'),
       company: yup
         .string()
-        .max(100),
+        .max(100)
+        .default(''),
       phone: yup
         .string()
-        .matches(/^[0-9+\s()-]*$/, 'Numéro de téléphone invalide'),
+        .matches(/^[0-9+\s()-]*$/, 'Numéro de téléphone invalide')
+        .default(''),
       message: yup
         .string()
         .required('Message est obligatoire'),
@@ -44,7 +47,12 @@ function ContactForm() {
   const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-  const onSubmit = (data) => {
+  const onSubmit = (): void => {
+    if (!form.current || !serviceId || !templateId || !publicKey) {
+      alert('Configuration EmailJS manquante. Veuillez vérifier vos variables d\'environnement.');
+      return;
+    }
+
     // Envoi du formulaire via EmailJS
     emailjs.sendForm(
       serviceId, 
@@ -56,7 +64,8 @@ function ContactForm() {
       console.log('SUCCESS!', result.text);
       alert('Message envoyé avec succès !');
       reset();
-    }, (error) => {
+    })
+    .catch((error) => {
       console.log('FAILED...', error);
       console.log('Erreur détaillée:', error.text);
       alert('Une erreur est survenue, veuillez réessayer. Voir la console pour plus de détails.');
@@ -76,7 +85,6 @@ function ContactForm() {
             <label>Nom et Prénom *</label>
             <input
               type="text"
-              name="name"
               placeholder="Votre nom et prénom"
               {...register('name')}
             />
@@ -87,7 +95,6 @@ function ContactForm() {
             <label>Adresse e-mail *</label>
             <input
               type="email"
-              name="email"
               placeholder="exemple@email.com"
               {...register('email')}
             />
@@ -98,7 +105,6 @@ function ContactForm() {
             <label>Entreprise</label>
             <input
               type="text"
-              name="company"
               placeholder="Votre entreprise (optionnel)"
               {...register('company')}
             />
@@ -108,7 +114,6 @@ function ContactForm() {
             <label>Numéro de téléphone</label>
             <input
               type="tel"
-              name="phone"
               placeholder="+33 6 12 34 56 78"
               {...register('phone')}
             />
@@ -118,7 +123,6 @@ function ContactForm() {
           <div className="message-group">
             <label>Message *</label>
             <textarea
-              name="message"
               placeholder="Saisissez votre message ici..."
               {...register('message')}
             ></textarea>
@@ -134,6 +138,6 @@ function ContactForm() {
       </div>
     </section>
   );
-}
+};
 
 export default ContactForm;
