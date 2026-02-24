@@ -3,7 +3,7 @@ import React from 'react';
 const Footer: React.FC = () => {
   return (
     <footer>
-      <p>&copy; 2025 Samy Boudjema</p>
+      <p>&copy; {new Date().getFullYear()} Samy Boudjema</p>
     </footer>
   );
 };

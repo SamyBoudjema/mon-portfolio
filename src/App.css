@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,19 +12,19 @@
   --secondary: #5a54ff;
   --dark: #0a0e17;
   --darker: #05070c;
-  
+
   --gray-dark: #1a1f2c;
   --gray: #3a4556;
   --gray-light: #8892a0;
-  
+
   --success: #00cc8e;
   --warning: #ff9500;
   --danger: #ff3b30;
   --neon-blue: #5271ff;
   --glow-blue: #18b6f6;
   --purple: #bd00ff;
-  
-  
+
+
   --transition: all 0.3s ease;
   --border-radius: 4px;
   --shadow-sm: 0 1px 3px rgba(100, 255, 218, 0.1);
@@ -31,16 +33,102 @@
   --glow: 0 0 15px rgba(100, 255, 218, 0.6);
 }
 
-@keyframes gradientFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes starTwinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-@keyframes floatEffect { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes shine { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
-@keyframes borderGlow { 0%, 100% { box-shadow: 0 0 5px rgba(100, 255, 218, 0.3); } 50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); } }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
 
-html, body {
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes starTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatEffect {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+@keyframes borderGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(100, 255, 218, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+html,
+body {
   overflow-x: hidden;
   width: 100%;
   height: 100%;
@@ -132,7 +220,8 @@ html, body {
   overflow: hidden;
 }
 
-.hero::before, .hero::after {
+.hero::before,
+.hero::after {
   content: '';
   position: absolute;
   top: 0;
@@ -147,7 +236,7 @@ html, body {
 }
 
 .hero::after {
-  background-image: 
+  background-image:
     radial-gradient(circle at 25% 25%, rgba(100, 255, 218, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 75% 75%, rgba(90, 84, 255, 0.1) 1px, transparent 1px);
   background-size: 30px 30px;
@@ -240,9 +329,17 @@ html, body {
   animation: floatEffect 6s ease-in-out infinite;
 }
 
-.social-icon:nth-child(1) { animation-delay: 0s; }
-.social-icon:nth-child(2) { animation-delay: 1s; }
-.social-icon:nth-child(3) { animation-delay: 2s; }
+.social-icon:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.social-icon:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.social-icon:nth-child(3) {
+  animation-delay: 2s;
+}
 
 .social-icon::before {
   content: '';
@@ -374,7 +471,7 @@ footer::before {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -0.7rem; 
+  bottom: -0.7rem;
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
@@ -482,7 +579,8 @@ footer::before {
   align-items: center;
 }
 
-.project-links a, .project-status {
+.project-links a,
+.project-status {
   color: var(--gray-light);
   font-size: 1.25rem;
   transition: all 0.3s ease;
@@ -497,7 +595,8 @@ footer::before {
   border: 1px solid rgba(100, 255, 218, 0.15);
 }
 
-.project-links a:hover, .project-status:hover {
+.project-links a:hover,
+.project-status:hover {
   color: var(--primary);
   transform: translateY(-4px) scale(1.1);
   background: rgba(10, 15, 25, 0.8);
@@ -560,7 +659,7 @@ footer::before {
   color: var(--primary);
   border: 1px solid rgba(100, 255, 218, 0.2);
   letter-spacing: 0.3px;
-  
+
 }
 
 #github-projects-panel .project-card,
@@ -588,7 +687,7 @@ footer::before {
   color: #eaeaea;
   position: relative;
   overflow: hidden;
-  padding: 3rem 0 2rem; 
+  padding: 3rem 0 2rem;
 }
 
 .about::before {
@@ -612,7 +711,7 @@ footer::before {
 .about-text {
   font-size: 1.1rem;
   line-height: 1.8;
-  text-align: justify; 
+  text-align: justify;
 }
 
 .about-text p {
@@ -654,7 +753,7 @@ footer::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(circle at 10% 10%, rgba(100, 255, 218, 0.03) 10px, transparent 10px),
     radial-gradient(circle at 90% 90%, rgba(24, 182, 246, 0.03) 10px, transparent 10px);
   background-size: 30px 30px;
@@ -730,12 +829,14 @@ footer::before {
   gap: 1rem;
 }
 
-.id-card-grid-item, .id-card-contact-item, .id-card-interests-container {
+.id-card-grid-item,
+.id-card-contact-item,
+.id-card-interests-container {
   padding: 0.8rem;
   border-radius: 6px;
   background: rgba(10, 15, 25, 0.5);
   border: 1px solid rgba(100, 255, 218, 0.15);
-  
+
 }
 
 .id-card-label {
@@ -805,7 +906,7 @@ footer::before {
   font-size: 1rem;
   border: 1px solid rgba(100, 255, 218, 0.15);
   margin: 0 auto;
-  
+
 }
 
 .timeline-section {
@@ -869,7 +970,8 @@ footer::before {
   transform: translateY(-2px);
 }
 
-.journey-tab:hover i, .journey-tab:hover span {
+.journey-tab:hover i,
+.journey-tab:hover span {
   color: #eaeaea;
 }
 
@@ -908,7 +1010,7 @@ footer::before {
 .modern-timeline {
   display: flex;
   flex-direction: column;
-  gap: 2rem; 
+  gap: 2rem;
   position: relative;
   padding: 20px 0;
 }
@@ -983,7 +1085,7 @@ footer::before {
   position: relative;
   overflow: visible;
   margin-top: 15px;
-  margin-bottom: 25px; 
+  margin-bottom: 25px;
   min-height: 200px;
   width: 100%;
   display: flex;
@@ -1020,7 +1122,7 @@ footer::before {
   font-weight: 600;
   letter-spacing: 0.5px;
   position: relative;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
   text-align: left;
   border: 2px solid transparent;
   width: fit-content;
@@ -1113,7 +1215,7 @@ footer::before {
   display: inline-block;
   letter-spacing: 0.3px;
   border: 1px solid transparent;
-  
+
 }
 
 #education-panel .timeline-tags span {
@@ -1128,258 +1230,7 @@ footer::before {
   border-color: rgba(100, 255, 218, 0.25);
 }
 
-@media (max-width: 992px) {
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .about-text { order: 2; }
-  .id-card { 
-    order: 1;
-    max-width: 450px;
-  }
-  
-  .timeline-container {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  
-  .timeline-column:not(:first-child) {
-    margin-top: 40px;
-  }
-}
 
-@media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
-  
-  .header nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(10, 14, 23, 0.9);
-    box-shadow: 0 -2px 10px rgba(100, 255, 218, 0.2);
-    padding: 0.8rem 0;
-    border-top: 1px solid rgba(100, 255, 218, 0.2);
-  }
-  
-  .header nav ul {
-    justify-content: space-around;
-    width: 100%;
-    gap: 0;
-  }
-  
-  .header nav ul li {
-    margin: 0;
-  }
-  
-  .header nav ul li a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.8rem;
-  }
-  
-  .header nav ul li a::before {
-    content: '\f015';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-  }
-  
-  .header nav ul li:nth-child(1) a::before { content: '\f007'; }
-  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; }
-  .header nav ul li:nth-child(3) a::before { content: '\f19d'; }
-  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; }
-  
-  .header nav ul li a::after {
-    display: none;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .section-container {
-    padding: 6rem 1.5rem;
-  }
-  
-  .timeline-content {
-    padding: 20px;
-  }
-  
-  .timeline-column-title {
-    margin-bottom: 20px;
-  }
-  
-  .journey-tabs {
-    flex-direction: row;
-    gap: 10px;
-  }
-  
-  .journey-tab {
-    min-width: 140px;
-    padding: 10px 15px;
-  }
-  
-  .timeline-card {
-    flex-direction: column;
-  }
-  
-  .timeline-card-date {
-    width: 100%;
-    min-width: 100%;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding-left: 60px;
-    margin-bottom: 15px;
-    align-items: center;
-  }
-  
-  .timeline-card-date span {
-    max-width: none;
-    width: auto;
-  }
-  
-  .timeline-card-date::before {
-    left: 40px;
-    top: 50%;
-    right: auto;
-    transform: translateY(-50%);
-  }
-  
-  .timeline-card:hover .timeline-card-date::before {
-    transform: translateY(-50%) scale(1.2);
-  }
-  
-  .modern-timeline::before {
-    left: 20px;
-  }
-  
-  .timeline-card-content {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 576px) {
-  .profile-photo {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .id-card-header {
-    padding: 1rem;
-  }
-  
-  .id-card-header h3 {
-    font-size: 1.2rem;
-  }
-  
-  .id-card-title {
-    font-size: 0.9rem;
-  }
-  
-  .id-card-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-  
-  .id-card-body {
-    padding: 1rem;
-  }
-  
-  .id-card-interests {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-  }
-  
-  .interest-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .about-text {
-    font-size: 1rem;
-  }
-  
-  .hero-name {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-  }
-  
-  .hero-title {
-    font-size: clamp(1.3rem, 4vw, 2rem);
-  }
-  
-  .hero-subtitle {
-    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
-  }
-  
-  .social-icons {
-    gap: 1.5rem;
-  }
-  
-  .social-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-  
-  .journey-tab {
-    min-width: 120px;
-    padding: 8px 12px;
-  }
-  
-  .journey-tab i {
-    font-size: 1rem;
-  }
-  
-  .journey-tab span {
-    font-size: 0.85rem;
-  }
-  
-  .timeline-card-content {
-    padding: 20px; 
-    margin-top: 25px;
-  }
-  
-  .timeline-card {
-    padding-left: 40px;
-  }
-  
-  .timeline-card::before {
-    left: 10px;
-    width: 16px;
-    height: 16px;
-  }
-  
-  .modern-timeline::before {
-    left: 18px;
-  }
-  
-  .timeline-date {
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    margin-bottom: 12px;
-  }
-}
 
 @media (max-width: 1200px) {
   .section-container {
@@ -1392,29 +1243,29 @@ footer::before {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
-  .about-text { 
-    order: 2; 
+
+  .about-text {
+    order: 2;
   }
-  
-  .id-card { 
+
+  .id-card {
     order: 1;
     max-width: 450px;
     margin: 0 auto;
     transform: perspective(1000px) rotateY(0);
   }
-  
+
   .timeline-card-content {
     min-height: 200px;
   }
 }
 
 @media (max-width: 768px) {
-  
+
   .header {
     padding: 1rem 0;
   }
-  
+
   .header nav {
     position: fixed;
     bottom: 0;
@@ -1428,13 +1279,13 @@ footer::before {
     -webkit-backdrop-filter: blur(10px);
     z-index: 100;
   }
-  
+
   .header nav ul {
     justify-content: space-around;
     width: 100%;
     gap: 0;
   }
-  
+
   .header nav ul li a {
     display: flex;
     flex-direction: column;
@@ -1442,7 +1293,7 @@ footer::before {
     font-size: 0.8rem;
     padding: 0.5rem;
   }
-  
+
   .header nav ul li a::before {
     content: '\f007';
     font-family: 'Font Awesome 5 Free';
@@ -1450,110 +1301,121 @@ footer::before {
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
   }
-  
-  .header nav ul li:nth-child(1) a::before { content: '\f007'; } 
-  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; } 
-  .header nav ul li:nth-child(3) a::before { content: '\f19d'; } 
-  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; } 
-  
+
+  .header nav ul li:nth-child(1) a::before {
+    content: '\f007';
+  }
+
+  .header nav ul li:nth-child(2) a::before {
+    content: '\f0b1';
+  }
+
+  .header nav ul li:nth-child(3) a::before {
+    content: '\f19d';
+  }
+
+  .header nav ul li:nth-child(4) a::before {
+    content: '\f0e0';
+  }
+
   .header nav ul li a::after {
     display: none;
   }
-  
-  
+
+
   .hero {
     padding: 0 1rem;
   }
-  
+
   .hero-content {
     padding: 0 1rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     width: 100%;
     max-width: 260px;
     gap: 1rem;
   }
-  
+
   .btn {
     width: 100%;
     text-align: center;
     padding: 0.8rem 1.5rem;
   }
-  
+
   .social-icons {
     gap: 1.5rem;
     margin-bottom: 2.5rem;
   }
-  
-  
+
+
   .section-container {
     padding: 4rem 1.5rem;
   }
-  
+
   .section-title {
     font-size: 2.2rem;
     margin-bottom: 2.5rem;
   }
-  
-  
+
+
   .journey-tabs {
     flex-direction: row;
     gap: 10px;
   }
-  
+
   .journey-tab {
     min-width: 140px;
     padding: 10px 15px;
   }
-  
-  
+
+
   .modern-timeline {
     gap: 30px;
   }
-  
+
   .modern-timeline::before {
     left: 20px;
   }
-  
+
   .timeline-card {
     padding-left: 50px;
   }
-  
+
   .timeline-card::before {
     left: 11px;
     width: 18px;
     height: 18px;
   }
-  
+
   .timeline-card-content {
     padding: 25px;
   }
-  
+
   .company-header {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
-  
+
   .company-logo {
     width: 70px;
     height: 70px;
   }
-  
+
   .timeline-card-content h4 {
     font-size: 1.2rem;
   }
-  
+
   .timeline-card-content h5 {
     font-size: 1rem;
   }
-  
+
   .timeline-tags {
     gap: 8px;
   }
-  
+
   .timeline-tags span {
     padding: 6px 12px;
     font-size: 0.8rem;
@@ -1561,95 +1423,95 @@ footer::before {
 }
 
 @media (max-width: 576px) {
-  
+
   .hero-name {
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
-  
+
   .hero-title {
     font-size: clamp(1.3rem, 4vw, 2rem);
   }
-  
+
   .hero-subtitle {
     font-size: clamp(0.9rem, 2.5vw, 1.3rem);
     margin-bottom: 2rem;
   }
-  
+
   .social-icon {
     width: 45px;
     height: 45px;
     font-size: 1.3rem;
   }
-  
-  
+
+
   .profile-photo {
     width: 70px;
     height: 70px;
   }
-  
+
   .id-card-header {
     padding: 1rem;
   }
-  
+
   .id-card-header h3 {
     font-size: 1.2rem;
   }
-  
+
   .id-card-title {
     font-size: 0.9rem;
   }
-  
+
   .id-card-grid {
     grid-template-columns: 1fr;
     gap: 0.8rem;
   }
-  
+
   .id-card-body {
     padding: 1rem;
   }
-  
+
   .id-card-interests {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.6rem;
   }
-  
+
   .interest-icon {
     width: 30px;
     height: 30px;
     font-size: 0.8rem;
   }
-  
-  
+
+
   .timeline-card::before {
     left: 11px;
     top: 20px;
   }
-  
+
   .timeline-card-content {
     padding: 20px;
     min-height: auto;
   }
-  
+
   .timeline-date {
     font-size: 0.8rem;
     padding: 6px 10px;
   }
-  
-  
+
+
   .project-card {
     padding: 20px;
   }
-  
+
   .project-header h4 {
     font-size: 1.2rem;
   }
-  
+
   .project-links a {
     width: 35px;
     height: 35px;
     font-size: 1.1rem;
   }
-  
+
   .project-tech span {
     padding: 5px 12px;
     font-size: 0.8rem;
@@ -1660,57 +1522,57 @@ footer::before {
   .hero-name {
     font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
-  
+
   .journey-tabs {
     gap: 8px;
   }
-  
+
   .journey-tab {
     min-width: 120px;
     padding: 8px 12px;
     gap: 8px;
   }
-  
+
   .journey-tab i {
     font-size: 0.9rem;
   }
-  
+
   .journey-tab span {
     font-size: 0.8rem;
   }
-  
+
   .timeline-card {
     padding-left: 40px;
   }
-  
+
   .timeline-card::before {
     left: 11px;
     width: 16px;
     height: 16px;
   }
-  
+
   .modern-timeline::before {
     left: 18px;
   }
-  
+
   .timeline-card-content h4 {
     font-size: 1.1rem;
     margin-bottom: 8px;
   }
-  
+
   .timeline-card-content h5 {
     font-size: 0.9rem;
     margin-bottom: 15px;
   }
-  
+
   .timeline-card-content p {
     font-size: 0.9rem;
   }
-  
+
   .header nav ul li a {
     font-size: 0.7rem;
   }
-  
+
   .header nav ul li a::before {
     font-size: 1.1rem;
   }
@@ -1720,7 +1582,7 @@ footer::before {
   main {
     padding-bottom: 70px;
   }
-  
+
   footer {
     padding-bottom: calc(2rem + 60px);
   }
@@ -1730,12 +1592,12 @@ footer::before {
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .hero-buttons .btn {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
-  
+
   .journey-tab {
     min-width: 110px;
     padding: 8px 10px;
@@ -1758,12 +1620,12 @@ footer::before {
     border-bottom: none;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
   }
-  
+
   .header nav {
     width: 100%;
     max-width: 100%;
   }
-  
+
   .header nav ul {
     display: flex;
     justify-content: space-around;
@@ -1773,12 +1635,12 @@ footer::before {
     margin: 0;
     gap: 0;
   }
-  
+
   .header nav ul li {
     flex: 1;
     text-align: center;
   }
-  
+
   .header nav ul li a {
     display: flex;
     flex-direction: column;
@@ -1787,7 +1649,7 @@ footer::before {
     font-size: 0.7rem;
     white-space: nowrap;
   }
-  
+
   .header nav ul li a::before {
     content: '\f007';
     font-family: 'Font Awesome 5 Free', 'Font Awesome 6 Free';
@@ -1796,20 +1658,31 @@ footer::before {
     margin-bottom: 0.3rem;
     display: block;
   }
-  
-  .header nav ul li:nth-child(1) a::before { content: '\f007'; }
-  .header nav ul li:nth-child(2) a::before { content: '\f0b1'; }
-  .header nav ul li:nth-child(3) a::before { content: '\f19d'; }
-  .header nav ul li:nth-child(4) a::before { content: '\f0e0'; }
-  
+
+  .header nav ul li:nth-child(1) a::before {
+    content: '\f007';
+  }
+
+  .header nav ul li:nth-child(2) a::before {
+    content: '\f0b1';
+  }
+
+  .header nav ul li:nth-child(3) a::before {
+    content: '\f19d';
+  }
+
+  .header nav ul li:nth-child(4) a::before {
+    content: '\f0e0';
+  }
+
   .header nav ul li a::after {
     display: none;
   }
-  
+
   main {
     padding-bottom: 80px;
   }
-  
+
   footer {
     padding-bottom: calc(2rem + 70px);
   }
@@ -1975,21 +1848,21 @@ footer::before {
   .skills-category {
     padding: 1.5rem;
   }
-  
+
   .skills-items {
     gap: 1rem;
     justify-content: center;
   }
-  
+
   .skill-item {
     width: 70px;
   }
-  
+
   .skill-icon {
     width: 50px;
     height: 50px;
   }
-  
+
   .skill-icon i {
     font-size: 1.5rem;
   }
@@ -1999,28 +1872,28 @@ footer::before {
   .skills-categories {
     grid-template-columns: 1fr;
   }
-  
+
   .skills-category {
     padding: 1.25rem;
   }
-  
+
   .skills-items {
     justify-content: space-between;
   }
-  
+
   .skill-item {
     width: 60px;
   }
-  
+
   .skill-icon {
     width: 45px;
     height: 45px;
   }
-  
+
   .skill-icon i {
     font-size: 1.4rem;
   }
-  
+
   .skill-name {
     font-size: 0.75rem;
   }
@@ -2122,7 +1995,7 @@ footer::before {
 .contact-form textarea {
   flex-grow: 1;
   resize: none;
-  height: 220px; 
+  height: 220px;
   background: rgba(10, 14, 23, 0.8);
   border: 2px solid rgba(100, 255, 218, 0.2);
   line-height: 1.5;
@@ -2195,7 +2068,7 @@ footer::before {
   .contact-form {
     padding: 2.5rem;
   }
-  
+
   .contact-form textarea {
     min-height: 300px;
   }
@@ -2207,15 +2080,15 @@ footer::before {
     padding: 2rem;
     gap: 1.5rem;
   }
-  
+
   .contact-form .form-header h3 {
     font-size: 1.8rem;
   }
-  
+
   .contact-form .form-header p {
     max-width: 100%;
   }
-  
+
   .contact-form textarea {
     min-height: 250px;
   }

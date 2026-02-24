@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import photoProfile from '../../assets/photo.jpeg';
 import datadocsLogo from '../../assets/Datadocs_logo.png';
 import sitelLogo from '../../assets/logo_sitel.png';
@@ -9,42 +9,17 @@ import jeanRostandLogo from '../../assets/Logo_Jean-Rostand-Roubaix.png';
 import eicLogo from '../../assets/logo_EIC.jpeg';
 
 const About: React.FC = () => {
-  useEffect(() => {
-    const tabs = document.querySelectorAll<HTMLElement>('.journey-tab');
-    const panels = document.querySelectorAll<HTMLElement>('.journey-panel');
-    
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-        
-        tab.classList.add('active');
-        
-        const panelId = `${tab.getAttribute('data-tab')}-panel`;
-        const panel = document.getElementById(panelId);
-        if (panel) {
-          panel.classList.add('active');
-        }
-      });
-    });
-
-    const spans = document.querySelectorAll<HTMLSpanElement>('.timeline-card-date span');
-    spans.forEach(span => {
-      if (span.textContent === "Aujourd'hui") {
-        span.style.width = '120px';
-      }
-    });
-  }, []);
+  const [activeTab, setActiveTab] = useState<'education' | 'experience'>('education');
 
   return (
     <section id="a-propos" className="about">
       <div className="section-container">
         <h2 className="section-title">À Propos de Moi</h2>
-        
+
         <div className="about-content">
           <div className="about-text">
             <p>
-              Bonjour et bienvenue sur mon portfolio ! Je suis passionné par le développement web et la cybersécurité. 
+              Bonjour et bienvenue sur mon portfolio ! Je suis passionné par le développement web et la cybersécurité.
             </p>
             <p>
               Mon parcours en alternance me permet de combiner ma formation académique avec une expérience professionnelle concrète,
@@ -54,7 +29,7 @@ const About: React.FC = () => {
               J'aime relever de nouveaux défis et explorer les dernières technologies pour créer des solutions innovantes.
             </p>
           </div>
-          
+
           <div className="id-card">
             <div className="id-card-header">
               <img src={photoProfile} alt="Samy Boudjema" className="profile-photo" />
@@ -63,34 +38,34 @@ const About: React.FC = () => {
                 <span className="id-card-title">Apprenti Ingénieur Cybersécurité</span>
               </div>
             </div>
-            
+
             <div className="id-card-body">
               <div className="id-card-grid">
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Formation</span>
                   <span className="id-card-value">Master Informatique</span>
                 </div>
-                
+
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Statut</span>
                   <span className="id-card-value">Alternant</span>
                 </div>
-                
+
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Entreprise</span>
                   <span className="id-card-value">DataDocs</span>
                 </div>
-                
+
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Localisation</span>
                   <span className="id-card-value">Lille, France</span>
                 </div>
-                
+
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Âge</span>
                   <span className="id-card-value">24 ans</span>
                 </div>
-                
+
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Nationalité</span>
                   <span className="id-card-value">Française</span>
@@ -111,22 +86,28 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        <div className="timeline-section">              
+
+        <div className="timeline-section">
           <div className="journey-tabs">
-            <div className="journey-tab active" data-tab="education">
+            <div
+              className={`journey-tab ${activeTab === 'education' ? 'active' : ''}`}
+              onClick={() => setActiveTab('education')}
+            >
               <i className="fas fa-graduation-cap"></i>
               <span>Formation</span>
             </div>
-            <div className="journey-tab" data-tab="experience">
+            <div
+              className={`journey-tab ${activeTab === 'experience' ? 'active' : ''}`}
+              onClick={() => setActiveTab('experience')}
+            >
               <i className="fas fa-briefcase"></i>
               <span>Expérience</span>
             </div>
           </div>
-          
+
           <div className="journey-content">
             {/* Formations */}
-            <div className="journey-panel active" id="education-panel">
+            <div className={`journey-panel ${activeTab === 'education' ? 'active' : ''}`} id="education-panel">
               <div className="modern-timeline">
                 {/* Formation 1 - Master */}
                 <div className="timeline-card">
@@ -147,7 +128,7 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Formation 2 - Licence */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
@@ -167,7 +148,7 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Formation 3 - BTS */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
@@ -187,7 +168,7 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Formation 4 - Bac */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
@@ -209,9 +190,9 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Expériences */}
-            <div className="journey-panel" id="experience-panel">
+            <div className={`journey-panel ${activeTab === 'experience' ? 'active' : ''}`} id="experience-panel">
               <div className="modern-timeline">
                 {/* Expérience 1 - Alternance actuelle */}
                 <div className="timeline-card">
@@ -232,7 +213,7 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Expérience 2 - Stage */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
@@ -252,7 +233,7 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Expérience 3 - Stage */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
