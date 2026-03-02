@@ -60,7 +60,7 @@ const About: React.FC = () => {
               <img src={photoProfile} alt="Samy Boudjema" className="profile-photo" />
               <div className="id-card-header-text">
                 <h3>Samy Boudjema</h3>
-                <span className="id-card-title">Apprenti Ingénieur Cybersécurité</span>
+                <span className="id-card-title">Apprenti Ingénieur DevSecOps</span>
               </div>
             </div>
 
