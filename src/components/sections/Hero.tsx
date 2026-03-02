@@ -1,13 +1,19 @@
 import React from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import backgroundImage from '../../assets/back_screen.avif';
 import cvFile from '../../assets/CV_SamyBoudjema.pdf';
 
 const Hero: React.FC = () => {
+  const { isVisible, domRef } = useIntersectionObserver();
+
   return (
     <section id="accueil" className="hero" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="hero-content">
+      <div
+        ref={domRef}
+        className={`hero-content fade-in-section ${isVisible ? 'is-visible' : ''}`}
+      >
         <h1 className="hero-name" data-text="Samy Boudjema">Samy Boudjema</h1>
-        <h2 className="hero-title">Apprenti Ingénieur Cybersécurité</h2>
+        <h2 className="hero-title">Apprenti Ingénieur DevSecOps</h2>
 
         <div className="social-icons">
           <a href="https://www.linkedin.com/in/samy-boudjema-814076218/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Profil LinkedIn">

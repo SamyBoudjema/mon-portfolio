@@ -59,15 +59,17 @@
   }
 }
 
-@keyframes floatEffect {
-
-  0%,
-  100% {
-    transform: translateY(0);
+@keyframes float {
+  0% {
+    transform: translateY(0px);
   }
 
   50% {
     transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
   }
 }
 
@@ -518,6 +520,16 @@ footer::before {
   flex-direction: column;
   height: 100%;
   border-top: 3px solid var(--primary);
+}
+
+/* Équilibrage de la grille pour le dernier projet quand il est tout seul sur une ligne de 3 colonnes */
+@media (min-width: 993px) {
+  .projects-grid .project-card:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    justify-self: center;
+    width: 100%;
+  }
 }
 
 .project-card::before {
@@ -2092,4 +2104,30 @@ footer::before {
   .contact-form textarea {
     min-height: 250px;
   }
+}
+/* Animations au défilement (Scroll Intersections) */
+.fade-in-section, .slide-up-section {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out, visibility 0.8s;
+  will-change: opacity, visibility, transform;
+}
+.slide-up-section {
+  transform: translateY(40px);
+}
+.fade-in-section.is-visible, .slide-up-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+.delay-100.is-visible { transition-delay: 0.1s; }
+.delay-200.is-visible { transition-delay: 0.2s; }
+.delay-300.is-visible { transition-delay: 0.3s; }
+
+/* Active Navigation Item */
+.header nav ul li a.active {
+  color: var(--primary);
+}
+.header nav ul li a.active::after {
+  width: 100%;
 }

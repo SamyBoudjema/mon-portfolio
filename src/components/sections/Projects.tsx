@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 interface ProjectCardProps {
   title: string;
@@ -52,10 +53,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 };
 
 const Projects: React.FC = () => {
+  const { isVisible, domRef } = useIntersectionObserver({ threshold: 0.1 });
+
   const projectsData: ProjectCardProps[] = [
     {
       title: "Payplan 🚀",
-      description: "Application iOS premium de suivi de finances personnelles construite avec SwiftUI et alimentée par Notion en tant que backend. Conçue pour la rapidité, l'esthétique et le suivi collaboratif des dépenses.",
+      description: "Application iOS premium de suivi de finances personnelles construite avec SwiftUI et alimentée par Notion en tant backend. Conçue pour la rapidité, l'esthétique et le suivi collaboratif des dépenses.",
       technologies: ["SwiftUI", "Notion API", "iOS"],
       githubUrl: "https://github.com/SamyBoudjema/Payplan"
     },
@@ -100,7 +103,10 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projets" className="projects">
-      <div className="section-container">
+      <div
+        ref={domRef}
+        className={`section-container slide-up-section ${isVisible ? 'is-visible' : ''}`}
+      >
         <h2 className="section-title">Mes Projets</h2>
 
         <div className="projects-grid">

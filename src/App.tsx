@@ -1,4 +1,5 @@
 import './App.css';
+import { Toaster } from 'react-hot-toast';
 
 // Composants de structure
 import Header from './components/layout/Header';
@@ -14,6 +15,22 @@ import Contact from './components/sections/Contact';
 function App() {
   return (
     <div className="App">
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: '#1a1f2c',
+            color: '#eaeaea',
+            border: '1px solid rgba(100, 255, 218, 0.2)',
+          },
+          success: {
+            iconTheme: {
+              primary: '#64ffda',
+              secondary: '#1a1f2c',
+            },
+          },
+        }}
+      />
       <Header />
       <main>
         <Hero />

@@ -1,37 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+
+const schema = yup
+  .object({
+    name: yup
+      .string()
+      .max(50)
+      .required('Nom et Prénom sont obligatoires'),
+    email: yup
+      .string()
+      .email('Adresse e-mail invalide')
+      .max(255)
+      .required('Adresse e-mail est obligatoire'),
+    company: yup
+      .string()
+      .max(100)
+      .default(''),
+    phone: yup
+      .string()
+      .matches(/^[0-9+\s()-]*$/, 'Numéro de téléphone invalide')
+      .default(''),
+    message: yup
+      .string()
+      .required('Message est obligatoire'),
+  })
+  .required();
 
 const ContactForm: React.FC = () => {
-  // Créer une référence au formulaire pour EmailJS
   const form = useRef<HTMLFormElement>(null);
-  
-  const schema = yup
-    .object({
-      name: yup
-        .string()
-        .max(50)
-        .required('Nom et Prénom sont obligatoires'),
-      email: yup
-        .string()
-        .email('Adresse e-mail invalide')
-        .max(255)
-        .required('Adresse e-mail est obligatoire'),
-      company: yup
-        .string()
-        .max(100)
-        .default(''),
-      phone: yup
-        .string()
-        .matches(/^[0-9+\s()-]*$/, 'Numéro de téléphone invalide')
-        .default(''),
-      message: yup
-        .string()
-        .required('Message est obligatoire'),
-    })
-    .required();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isVisible, domRef } = useIntersectionObserver({ threshold: 0.2 });
 
   const {
     register,
@@ -47,40 +50,49 @@ const ContactForm: React.FC = () => {
   const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-  const onSubmit = (): void => {
+  const onSubmit = async (): Promise<void> => {
     if (!form.current || !serviceId || !templateId || !publicKey) {
-      alert('Configuration EmailJS manquante. Veuillez vérifier vos variables d\'environnement.');
+      toast.error('Configuration EmailJS manquante. Veuillez vérifier vos variables d\'environnement.');
       return;
     }
 
-    // Envoi du formulaire via EmailJS
-    emailjs.sendForm(
-      serviceId, 
-      templateId, 
-      form.current, 
+    setIsSubmitting(true);
+
+    const emailPromise = emailjs.sendForm(
+      serviceId,
+      templateId,
+      form.current,
       publicKey
-    )
-    .then((result) => {
-      console.log('SUCCESS!', result.text);
-      alert('Message envoyé avec succès !');
-      reset();
+    );
+
+    toast.promise(emailPromise, {
+      loading: 'Envoi en cours...',
+      success: 'Message envoyé avec succès !',
+      error: 'Une erreur est survenue, veuillez réessayer.',
     })
-    .catch((error) => {
-      console.log('FAILED...', error);
-      console.log('Erreur détaillée:', error.text);
-      alert('Une erreur est survenue, veuillez réessayer. Voir la console pour plus de détails.');
-    });
+      .then(() => {
+        reset();
+      })
+      .catch((error) => {
+        console.log('Erreur détaillée EmailJS:', error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
     <section id="contact" className="contact">
-      <div className="section-container">
+      <div
+        ref={domRef}
+        className={`section-container slide-up-section ${isVisible ? 'is-visible' : ''}`}
+      >
         <h2 className="section-title">Contact</h2>
         <form ref={form} className="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-header">
             <h3>Envoyez-moi un message</h3>
           </div>
-          
+
           <div className="input-group">
             <label>Nom et Prénom *</label>
             <input
@@ -90,7 +102,7 @@ const ContactForm: React.FC = () => {
             />
             {errors.name && <span className="error">{errors.name.message}</span>}
           </div>
-          
+
           <div className="input-group">
             <label>Adresse e-mail *</label>
             <input
@@ -100,7 +112,7 @@ const ContactForm: React.FC = () => {
             />
             {errors.email && <span className="error">{errors.email.message}</span>}
           </div>
-          
+
           <div className="input-group">
             <label>Entreprise</label>
             <input
@@ -109,7 +121,7 @@ const ContactForm: React.FC = () => {
               {...register('company')}
             />
           </div>
-          
+
           <div className="input-group">
             <label>Numéro de téléphone</label>
             <input
@@ -119,7 +131,7 @@ const ContactForm: React.FC = () => {
             />
             {errors.phone && <span className="error">{errors.phone.message}</span>}
           </div>
-          
+
           <div className="message-group">
             <label>Message *</label>
             <textarea
@@ -128,10 +140,17 @@ const ContactForm: React.FC = () => {
             ></textarea>
             {errors.message && <span className="error">{errors.message.message}</span>}
           </div>
-          
+
           <div className="button-group">
-            <button type="submit">Envoyer</button>
-            {/* Champ caché pour l'email du destinataire */}
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <i className="fas fa-spinner fa-spin"></i> Envoi...
+                </>
+              ) : (
+                'Envoyer'
+              )}
+            </button>
             <input type="hidden" name="to_email" value="samy.bdm16@gmail.com" />
           </div>
         </form>

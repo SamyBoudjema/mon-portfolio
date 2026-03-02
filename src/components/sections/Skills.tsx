@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 interface SkillItemProps {
   icon: string;
@@ -36,6 +37,8 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ title, icon, skills }) =>
 };
 
 const Skills: React.FC = () => {
+  const { isVisible, domRef } = useIntersectionObserver({ threshold: 0.1 });
+
   const skillsCategories: SkillCategoryProps[] = [
     {
       title: "Administration Système",
@@ -90,9 +93,12 @@ const Skills: React.FC = () => {
 
   return (
     <section id="competences" className="skills">
-      <div className="section-container">
+      <div
+        ref={domRef}
+        className={`section-container slide-up-section ${isVisible ? 'is-visible' : ''}`}
+      >
         <h2 className="section-title">Mes Compétences</h2>
-        
+
         <div className="skills-categories">
           {skillsCategories.map((category, index) => (
             <SkillCategory key={index} {...category} />

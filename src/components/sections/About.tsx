@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import photoProfile from '../../assets/photo.jpeg';
 import datadocsLogo from '../../assets/Datadocs_logo.png';
 import sitelLogo from '../../assets/logo_sitel.png';
@@ -10,6 +11,10 @@ import eicLogo from '../../assets/logo_EIC.jpeg';
 
 const About: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'education' | 'experience'>('education');
+
+  const headerObserver = useIntersectionObserver();
+  const contentObserver = useIntersectionObserver({ threshold: 0.2 });
+  const timelineObserver = useIntersectionObserver({ threshold: 0.1 });
 
   const calculateAge = () => {
     // Calcul dynamique de l'âge (année de naissance ~2001)
@@ -26,9 +31,17 @@ const About: React.FC = () => {
   return (
     <section id="a-propos" className="about">
       <div className="section-container">
-        <h2 className="section-title">À Propos de Moi</h2>
+        <h2
+          ref={headerObserver.domRef}
+          className={`section-title fade-in-section ${headerObserver.isVisible ? 'is-visible' : ''}`}
+        >
+          À Propos de Moi
+        </h2>
 
-        <div className="about-content">
+        <div
+          ref={contentObserver.domRef}
+          className={`about-content slide-up-section ${contentObserver.isVisible ? 'is-visible' : ''}`}
+        >
           <div className="about-text">
             <p>
               Bonjour et bienvenue sur mon portfolio ! Je suis passionné par le développement web et la cybersécurité.
@@ -99,7 +112,10 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        <div className="timeline-section">
+        <div
+          ref={timelineObserver.domRef}
+          className={`timeline-section slide-up-section delay-200 ${timelineObserver.isVisible ? 'is-visible' : ''}`}
+        >
           <div className="journey-tabs" role="tablist" aria-label="Parcours académique et professionnel">
             <button
               className={`journey-tab ${activeTab === 'education' ? 'active' : ''}`}
