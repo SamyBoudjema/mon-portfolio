@@ -30,6 +30,7 @@ const Header: React.FC = () => {
     <header className="header">
       <nav>
         <ul>
+          <li><a href="#accueil" className={activeSection === 'accueil' ? 'active' : ''}>Accueil</a></li>
           <li><a href="#a-propos" className={activeSection === 'a-propos' ? 'active' : ''}>À propos de moi</a></li>
           <li><a href="#projets" className={activeSection === 'projets' ? 'active' : ''}>Mes projets</a></li>
           <li><a href="#competences" className={activeSection === 'competences' ? 'active' : ''}>Compétences</a></li>

@@ -23,27 +23,27 @@
 
 ## 🟡 Améliorations UX / Design
 
-- [ ] **Grille projets déséquilibrée**
+- [x] **Grille projets déséquilibrée**
   - 7 projets → la dernière ligne n'a qu'1 carte isolée
   - Options : ajouter un 8e/9e projet, ou `span` plus large pour le dernier
 
-- [ ] **Animations au scroll**
+- [x] **Animations au scroll**
   - Toutes les sections apparaissent d'un coup
   - → `IntersectionObserver` avec des fade-in pour dynamiser l'apparition
 
-- [ ] **Scroll-spy navigation**
+- [x] **Scroll-spy navigation**
   - Le lien actif dans le header ne change pas pendant le scroll
   - → Surligner le lien de la section visible à l'écran
 
-- [ ] **Feedback formulaire : remplacer `alert()`**
+- [x] **Feedback formulaire : remplacer `alert()`**
   - `Contact.tsx` utilise `alert()` natif pour succès/erreur
   - → Toast notification plus professionnel (ex: react-hot-toast)
 
-- [ ] **Loading state sur le bouton "Envoyer"**
+- [x] **Loading state sur le bouton "Envoyer"**
   - Pas d'indicateur de chargement pendant l'envoi du message
   - → Spinner ou texte "Envoi en cours..." + désactiver le bouton
 
-- [ ] **Lien "Accueil" dans le header**
+- [x] **Lien "Accueil" dans le header**
   - La navigation ne permet pas de remonter facilement en haut de page
   - → Ajouter un lien ou un bouton "scroll to top"
 
