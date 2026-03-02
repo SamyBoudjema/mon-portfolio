@@ -6,16 +6,16 @@
 
 ## 🔴 Bugs / Problèmes à corriger
 
-- [ ] **Âge codé en dur** — `About.tsx:66`
+- [x] **Âge codé en dur** — `About.tsx:66`
   - "24 ans" ne se met pas à jour automatiquement
   - → Remplacer par un calcul dynamique basé sur la date de naissance
 
-- [ ] **Aucun attribut `aria-*`** — Tout le projet
+- [x] **Aucun attribut `aria-*`** — Tout le projet
   - Pas de `aria-label` sur les icônes sociales et liens GitHub
   - Pas de `role="tablist"` / `role="tab"` sur les onglets Formation/Expérience
   - Pas de texte `sr-only` pour les lecteurs d'écran
 
-- [ ] **Image Open Graph relative** — `index.html:26`
+- [x] **Image Open Graph relative** — `index.html:26`
   - `og:image` utilise `./image_512.png` (chemin relatif)
   - → Les réseaux sociaux ont besoin d'une URL absolue pour la preview
 

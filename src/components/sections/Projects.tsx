@@ -23,18 +23,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <h4>{title}</h4>
         <div className="project-links">
           {githubUrl && (
-            <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github" title="GitHub"></i>
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`Voir le code source GitHub de ${title}`}>
+              <i className="fab fa-github" title="GitHub" aria-hidden="true"></i>
             </a>
           )}
           {gitlabUrl && (
-            <a href={gitlabUrl} target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-gitlab" title="GitLab"></i>
+            <a href={gitlabUrl} target="_blank" rel="noopener noreferrer" aria-label={`Voir le code source GitLab de ${title}`}>
+              <i className="fab fa-gitlab" title="GitLab" aria-hidden="true"></i>
             </a>
           )}
           {liveUrl && (
-            <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-              <i className="fas fa-external-link-alt" title="Site live"></i>
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visiter le site du projet ${title}`}>
+              <i className="fas fa-external-link-alt" title="Site live" aria-hidden="true"></i>
             </a>
           )}
         </div>

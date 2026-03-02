@@ -11,6 +11,18 @@ import eicLogo from '../../assets/logo_EIC.jpeg';
 const About: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'education' | 'experience'>('education');
 
+  const calculateAge = () => {
+    // Calcul dynamique de l'âge (année de naissance ~2001)
+    const birthDate = new Date('2001-08-16');
+    const today = new Date();
+    let currentAge = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      currentAge--;
+    }
+    return currentAge;
+  };
+
   return (
     <section id="a-propos" className="about">
       <div className="section-container">
@@ -63,7 +75,7 @@ const About: React.FC = () => {
 
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Âge</span>
-                  <span className="id-card-value">24 ans</span>
+                  <span className="id-card-value">{calculateAge()} ans</span>
                 </div>
 
                 <div className="id-card-grid-item">
@@ -88,26 +100,42 @@ const About: React.FC = () => {
         </div>
 
         <div className="timeline-section">
-          <div className="journey-tabs">
-            <div
+          <div className="journey-tabs" role="tablist" aria-label="Parcours académique et professionnel">
+            <button
               className={`journey-tab ${activeTab === 'education' ? 'active' : ''}`}
               onClick={() => setActiveTab('education')}
+              role="tab"
+              aria-selected={activeTab === 'education'}
+              aria-controls="education-panel"
+              id="education-tab"
+              tabIndex={activeTab === 'education' ? 0 : -1}
             >
-              <i className="fas fa-graduation-cap"></i>
+              <i className="fas fa-graduation-cap" aria-hidden="true"></i>
               <span>Formation</span>
-            </div>
-            <div
+            </button>
+            <button
               className={`journey-tab ${activeTab === 'experience' ? 'active' : ''}`}
               onClick={() => setActiveTab('experience')}
+              role="tab"
+              aria-selected={activeTab === 'experience'}
+              aria-controls="experience-panel"
+              id="experience-tab"
+              tabIndex={activeTab === 'experience' ? 0 : -1}
             >
-              <i className="fas fa-briefcase"></i>
+              <i className="fas fa-briefcase" aria-hidden="true"></i>
               <span>Expérience</span>
-            </div>
+            </button>
           </div>
 
           <div className="journey-content">
             {/* Formations */}
-            <div className={`journey-panel ${activeTab === 'education' ? 'active' : ''}`} id="education-panel">
+            <div
+              className={`journey-panel ${activeTab === 'education' ? 'active' : ''}`}
+              id="education-panel"
+              role="tabpanel"
+              aria-labelledby="education-tab"
+              hidden={activeTab !== 'education'}
+            >
               <div className="modern-timeline">
                 {/* Formation 1 - Master */}
                 <div className="timeline-card">
@@ -192,7 +220,13 @@ const About: React.FC = () => {
             </div>
 
             {/* Expériences */}
-            <div className={`journey-panel ${activeTab === 'experience' ? 'active' : ''}`} id="experience-panel">
+            <div
+              className={`journey-panel ${activeTab === 'experience' ? 'active' : ''}`}
+              id="experience-panel"
+              role="tabpanel"
+              aria-labelledby="experience-tab"
+              hidden={activeTab !== 'experience'}
+            >
               <div className="modern-timeline">
                 {/* Expérience 1 - Alternance actuelle */}
                 <div className="timeline-card">
@@ -201,14 +235,14 @@ const About: React.FC = () => {
                     <div className="company-header">
                       <img src={datadocsLogo} alt="DataDocs" className="company-logo" />
                       <div>
-                        <h4>Alternance Consultant / Développeur</h4>
+                        <h4>Alternance Consultant / Développeur Fullstack</h4>
                         <h5><i className="fas fa-building"></i> DataDocs, Lezennes</h5>
                       </div>
                     </div>
-                    <p>Chefferie de projet et Mise en place de solution GED & Automatisation de WorkFlow</p>
+                    <p>Gestion de projets IT de bout en bout : développement Fullstack, déploiement automatisé sur architectures hybrides (Cloud/On-premise) et intégration de la cybersécurité dès la conception (DevSecOps, analyse EBIOS RM).</p>
                     <div className="timeline-tags">
                       <span>Script et Web Service - Python & APIs</span>
-                      <span>Portail Web : React.js & Vue.js</span>
+                      <span>Portail Web : Frontend : React.js & Vue.js | Backend : Node.js</span>
                       <span>Déploiement sur serveur - DEVOPS (Gitlab CI/CD, IIS)</span>
                     </div>
                   </div>
