@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.67735fbe.css",
-    "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.b134fdd0.js",
-    "static/js/537.17aecee6.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.17aecee6.chunk.js",
+    "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.1c405644.js",
+    "static/js/537.6596235d.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.6596235d.chunk.js",
     "static/js/180.3d51271a.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/180.3d51271a.chunk.js",
     "static/js/716.588942b0.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/716.588942b0.chunk.js",
     "static/js/840.83767c91.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/840.83767c91.chunk.js",
@@ -18,8 +18,8 @@
     "static/media/logo_sitel.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_sitel.ade202b3a91b525b0635.png",
     "index.html": "https://SamyBoudjema.github.io/mon-portfolio/index.html",
     "main.67735fbe.css.map": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.67735fbe.css.map",
-    "main.b134fdd0.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.b134fdd0.js.map",
-    "537.17aecee6.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.17aecee6.chunk.js.map",
+    "main.1c405644.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.1c405644.js.map",
+    "537.6596235d.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.6596235d.chunk.js.map",
     "180.3d51271a.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/180.3d51271a.chunk.js.map",
     "716.588942b0.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/716.588942b0.chunk.js.map",
     "840.83767c91.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/840.83767c91.chunk.js.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.67735fbe.css",
-    "static/js/main.b134fdd0.js"
+    "static/js/main.1c405644.js"
   ]
 }
