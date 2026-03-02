@@ -51,19 +51,19 @@
 
 ## 🟢 Optimisations techniques
 
-- [ ] **Meta description vague** — `index.html`
+- [x] **Meta description vague** — `index.html`
   - Actuelle : "Développeur Full Stack - Alternant en Informatique"
   - → Ajouter "Cybersécurité" et des mots-clés pertinents
 
-- [ ] **Lazy loading des composants**
+- [x] **Lazy loading des composants**
   - Tous les composants sont importés de façon synchrone
   - → `React.lazy()` + `Suspense` pour les sections below-the-fold (About, Skills, Contact)
   - Réduit le First Contentful Paint
 
-- [ ] **Compétences incomplètes** — `Skills.tsx`
+- [x] **Compétences incomplètes** — `Skills.tsx`
   - Technos manquantes utilisées dans les projets : SwiftUI, .NET, Unity/C#, TypeScript
   - → Ajouter ces compétences dans les catégories appropriées
 
-- [ ] **Schéma Yup recréé à chaque render** — `Contact.tsx`
+- [x] **Schéma Yup recréé à chaque render** — `Contact.tsx`
   - Le schéma de validation est défini à l'intérieur du composant
   - → Le déplacer en dehors du composant pour éviter des re-créations inutiles

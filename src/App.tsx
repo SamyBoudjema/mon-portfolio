@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import './App.css';
 import { Toaster } from 'react-hot-toast';
 
@@ -5,12 +6,14 @@ import { Toaster } from 'react-hot-toast';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-// Sections de la page
+// Sections critiques de la page (chargées immédiatement)
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Projects from './components/sections/Projects';
-import Skills from './components/sections/Skills';
-import Contact from './components/sections/Contact';
+
+// Sections secondaires en Lazy Loading
+const About = React.lazy(() => import('./components/sections/About'));
+const Projects = React.lazy(() => import('./components/sections/Projects'));
+const Skills = React.lazy(() => import('./components/sections/Skills'));
+const Contact = React.lazy(() => import('./components/sections/Contact'));
 
 function App() {
   return (
@@ -34,10 +37,12 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
+        <Suspense fallback={<div style={{ textAlign: 'center', padding: '50px', color: '#64ffda' }}>Chargement...</div>}>
+          <About />
+          <Projects />
+          <Skills />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>

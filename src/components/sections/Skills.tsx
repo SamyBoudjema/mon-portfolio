@@ -49,17 +49,26 @@ const Skills: React.FC = () => {
       ]
     },
     {
-      title: "Développement",
+      title: "Développement web & logiciel",
       icon: "fas fa-code",
       skills: [
         { icon: "fab fa-js-square", name: "JavaScript" },
+        { icon: "fas fa-code", name: "TypeScript" },
         { icon: "fab fa-react", name: "React" },
         { icon: "fab fa-vuejs", name: "Vue.js" },
-        { icon: "fab fa-html5", name: "HTML5" },
-        { icon: "fab fa-css3-alt", name: "CSS3" },
-        { icon: "fab fa-android", name: "Java/Kotlin" },
+        { icon: "fab fa-html5", name: "HTML/CSS" },
+        { icon: "fab fa-microsoft", name: ".NET / C#" },
         { icon: "fab fa-python", name: "Python" },
         { icon: "fas fa-terminal", name: "Bash" }
+      ]
+    },
+    {
+      title: "Mobile & XR",
+      icon: "fas fa-mobile-alt",
+      skills: [
+        { icon: "fab fa-swift", name: "SwiftUI (iOS)" },
+        { icon: "fab fa-android", name: "Java/Kotlin" },
+        { icon: "fab fa-unity", name: "Unity XR" }
       ]
     },
     {
