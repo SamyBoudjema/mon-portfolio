@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.67735fbe.css",
-    "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.1c405644.js",
+    "main.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.07020ec6.js",
     "static/js/537.6596235d.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.6596235d.chunk.js",
     "static/js/180.3d51271a.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/180.3d51271a.chunk.js",
     "static/js/716.588942b0.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/716.588942b0.chunk.js",
     "static/js/840.83767c91.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/840.83767c91.chunk.js",
     "static/js/453.afe6e986.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/453.afe6e986.chunk.js",
     "static/js/396.5c3bb701.chunk.js": "https://SamyBoudjema.github.io/mon-portfolio/static/js/396.5c3bb701.chunk.js",
-    "static/media/CV_SamyBoudjema.pdf": "https://SamyBoudjema.github.io/mon-portfolio/static/media/CV_SamyBoudjema.d194c4a40a492af5641f.pdf",
+    "static/media/CV_SamyBoudjema.pdf": "https://SamyBoudjema.github.io/mon-portfolio/static/media/CV_SamyBoudjema.95957dc0e3f58781a869.pdf",
     "static/media/logo_univ.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_univ.a0fb21a352330a163b8f.png",
     "static/media/logo_chr.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_chr.d9ec250aadda9f2b30db.png",
     "static/media/photo.jpeg": "https://SamyBoudjema.github.io/mon-portfolio/static/media/photo.a645c19e44f0f7984f85.jpeg",
@@ -18,7 +18,7 @@
     "static/media/logo_sitel.png": "https://SamyBoudjema.github.io/mon-portfolio/static/media/logo_sitel.ade202b3a91b525b0635.png",
     "index.html": "https://SamyBoudjema.github.io/mon-portfolio/index.html",
     "main.67735fbe.css.map": "https://SamyBoudjema.github.io/mon-portfolio/static/css/main.67735fbe.css.map",
-    "main.1c405644.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.1c405644.js.map",
+    "main.07020ec6.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/main.07020ec6.js.map",
     "537.6596235d.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/537.6596235d.chunk.js.map",
     "180.3d51271a.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/180.3d51271a.chunk.js.map",
     "716.588942b0.chunk.js.map": "https://SamyBoudjema.github.io/mon-portfolio/static/js/716.588942b0.chunk.js.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.67735fbe.css",
-    "static/js/main.1c405644.js"
+    "static/js/main.07020ec6.js"
   ]
 }
