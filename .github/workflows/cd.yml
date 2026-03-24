@@ -1,0 +1,94 @@
+name: CD — Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  # Déclenchement manuel possible depuis l'interface GitHub
+  workflow_dispatch:
+
+# Empêche deux déploiements simultanés
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # requis pour gh-pages
+
+jobs:
+  # ──────────────────────────────────────────────
+  # VÉRIFICATION PRÉ-DÉPLOIEMENT
+  # ──────────────────────────────────────────────
+  pre-deploy-checks:
+    name: Vérifications pré-déploiement
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Vérification TypeScript
+        run: npx tsc --noEmit
+
+      - name: Audit de sécurité rapide
+        run: npm audit --audit-level=critical
+
+  # ──────────────────────────────────────────────
+  # BUILD & DÉPLOIEMENT
+  # ──────────────────────────────────────────────
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    needs: pre-deploy-checks
+    environment:
+      name: production
+      url: https://samyboudjema.github.io/mon-portfolio
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Build de production
+        run: npm run build
+        env:
+          # Secrets injectés depuis GitHub Settings > Secrets > Actions
+          REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+          REACT_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+          REACT_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+          # Génère des Source Maps uniquement en dev (sécurité : ne pas exposer le code source en prod)
+          GENERATE_SOURCEMAP: 'false'
+          # Bloque le build si des warnings ESLint sont présents
+          CI: 'true'
+
+      - name: Déploiement sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          # Désactive Jekyll (évite que GitHub Pages ignore les dossiers commençant par _)
+          enable_jekyll: false
+          # Conserve l'historique des déploiements (1 commit par déploiement)
+          force_orphan: false
+          commit_message: "deploy: ${{ github.sha }} — ${{ github.event.head_commit.message }}"
+
+      - name: Résumé du déploiement
+        run: |
+          echo "## ✅ Déploiement réussi" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL:** https://samyboudjema.github.io/mon-portfolio" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environnement:** production" >> $GITHUB_STEP_SUMMARY

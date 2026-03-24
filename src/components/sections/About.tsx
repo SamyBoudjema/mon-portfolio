@@ -9,24 +9,31 @@ import juniaLogo from '../../assets/logo_junia.png';
 import jeanRostandLogo from '../../assets/Logo_Jean-Rostand-Roubaix.png';
 import eicLogo from '../../assets/logo_EIC.jpeg';
 
+/**
+ * Calcule dynamiquement l'âge actuel.
+ */
+const calculateAge = () => {
+  const birthDate = new Date('2001-08-16');
+  const today = new Date();
+  let currentAge = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    currentAge--;
+  }
+  return currentAge;
+};
+
+const CURRENT_AGE = calculateAge();
+
+/**
+ * Composant présentant le parcours académique et professionnel.
+ */
 const About: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'education' | 'experience'>('education');
 
-  const headerObserver = useIntersectionObserver();
-  const contentObserver = useIntersectionObserver({ threshold: 0.2 });
-  const timelineObserver = useIntersectionObserver({ threshold: 0.1 });
-
-  const calculateAge = () => {
-    // Calcul dynamique de l'âge (année de naissance ~2001)
-    const birthDate = new Date('2001-08-16');
-    const today = new Date();
-    let currentAge = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      currentAge--;
-    }
-    return currentAge;
-  };
+  const headerObserver = useIntersectionObserver<HTMLHeadingElement>();
+  const contentObserver = useIntersectionObserver<HTMLDivElement>({ threshold: 0.2 });
+  const timelineObserver = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
 
   return (
     <section id="a-propos" className="about">
@@ -57,7 +64,7 @@ const About: React.FC = () => {
 
           <div className="id-card">
             <div className="id-card-header">
-              <img src={photoProfile} alt="Samy Boudjema" className="profile-photo" />
+              <img src={photoProfile} alt="Samy Boudjema" className="profile-photo" loading="lazy" />
               <div className="id-card-header-text">
                 <h3>Samy Boudjema</h3>
                 <span className="id-card-title">Apprenti Ingénieur DevSecOps</span>
@@ -88,7 +95,7 @@ const About: React.FC = () => {
 
                 <div className="id-card-grid-item">
                   <span className="id-card-label">Âge</span>
-                  <span className="id-card-value">{calculateAge()} ans</span>
+                  <span className="id-card-value">{CURRENT_AGE} ans</span>
                 </div>
 
                 <div className="id-card-grid-item">
@@ -144,7 +151,6 @@ const About: React.FC = () => {
           </div>
 
           <div className="journey-content">
-            {/* Formations */}
             <div
               className={`journey-panel ${activeTab === 'education' ? 'active' : ''}`}
               id="education-panel"
@@ -153,12 +159,11 @@ const About: React.FC = () => {
               hidden={activeTab !== 'education'}
             >
               <div className="modern-timeline">
-                {/* Formation 1 - Master */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2023 - Aujourd'hui</div>
                     <div className="company-header">
-                      <img src={univLogo} alt="Université Catholique de Lille" className="company-logo" />
+                      <img src={univLogo} alt="Université Catholique de Lille" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Master Informatique CYBER</h4>
                         <h5><i className="fas fa-university"></i> Université Catholique de Lille</h5>
@@ -172,13 +177,11 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Formation 2 - Licence */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2023 - 2024</div>
                     <div className="company-header">
-                      <img src={juniaLogo} alt="Junia" className="company-logo" />
+                      <img src={juniaLogo} alt="Junia" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Licence Informatique Transition Digitale - Data & Cybersécurité</h4>
                         <h5><i className="fas fa-university"></i> Junia, Lille</h5>
@@ -192,13 +195,11 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Formation 3 - BTS */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2019 - 2021</div>
                     <div className="company-header">
-                      <img src={jeanRostandLogo} alt="Lycée Jean Rostand" className="company-logo" />
+                      <img src={jeanRostandLogo} alt="Lycée Jean Rostand" className="company-logo" loading="lazy" />
                       <div>
                         <h4>BTS Système Numérique Informatique & Réseaux</h4>
                         <h5><i className="fas fa-university"></i> Lycée Jean Rostand, Roubaix </h5>
@@ -212,13 +213,11 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Formation 4 - Bac */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2019</div>
                     <div className="company-header">
-                      <img src={eicLogo} alt="Lycée EIC" className="company-logo" />
+                      <img src={eicLogo} alt="Lycée EIC" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Baccalauréat Sciences et Technologies de l'Industrie et du Développement Durable</h4>
                         <h5><i className="fas fa-school"></i> Lycée EIC - Tourcoing</h5>
@@ -234,8 +233,6 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Expériences */}
             <div
               className={`journey-panel ${activeTab === 'experience' ? 'active' : ''}`}
               id="experience-panel"
@@ -244,12 +241,11 @@ const About: React.FC = () => {
               hidden={activeTab !== 'experience'}
             >
               <div className="modern-timeline">
-                {/* Expérience 1 - Alternance actuelle */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2023 - Aujourd'hui</div>
                     <div className="company-header">
-                      <img src={datadocsLogo} alt="DataDocs" className="company-logo" />
+                      <img src={datadocsLogo} alt="DataDocs" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Alternance Consultant / Développeur Fullstack</h4>
                         <h5><i className="fas fa-building"></i> DataDocs, Lezennes</h5>
@@ -263,13 +259,11 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Expérience 2 - Stage */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2022</div>
                     <div className="company-header">
-                      <img src={sitelLogo} alt="Sitel" className="company-logo" />
+                      <img src={sitelLogo} alt="Sitel" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Technicien informatique</h4>
                         <h5><i className="fas fa-building"></i> Sitel, Wasquehal</h5>
@@ -283,13 +277,11 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Expérience 3 - Stage */}
                 <div className="timeline-card">
                   <div className="timeline-card-content">
                     <div className="timeline-date">2021</div>
                     <div className="company-header">
-                      <img src={chrLogo} alt="Centre Hospitalier Victor Provo" className="company-logo" />
+                      <img src={chrLogo} alt="Centre Hospitalier Victor Provo" className="company-logo" loading="lazy" />
                       <div>
                         <h4>Stage DSI</h4>
                         <h5><i className="fas fa-laptop-code"></i> Centre Hospitalier Victor Provo, Roubaix</h5>

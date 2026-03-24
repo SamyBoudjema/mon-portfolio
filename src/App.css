@@ -2131,3 +2131,33 @@ footer::before {
 .header nav ul li a.active::after {
   width: 100%;
 }
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: var(--dark);
+  padding: 10px 20px;
+  z-index: 9999;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  opacity: 0;
+  transition: top 0.3s, opacity 0.3s;
+}
+
+.skip-link:focus {
+  top: 20px;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

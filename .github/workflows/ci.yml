@@ -1,0 +1,181 @@
+name: CI — Security & Quality
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  security-events: write  # requis pour CodeQL et l'upload SARIF
+
+jobs:
+  # ──────────────────────────────────────────────
+  # 1. ANALYSE STATIQUE & TYPAGE
+  # ──────────────────────────────────────────────
+  lint-and-typecheck:
+    name: Lint & TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Vérification TypeScript
+        run: npx tsc --noEmit
+
+      - name: ESLint (qualité + sécurité + accessibilité)
+        run: npx eslint src --ext .ts,.tsx --max-warnings 0
+
+  # ──────────────────────────────────────────────
+  # 2. BUILD DE VÉRIFICATION
+  # ──────────────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    env:
+      # Variables d'environnement fictives pour valider la compilation
+      # Les vraies valeurs sont dans les secrets GitHub (utilisées uniquement en CD)
+      REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+      REACT_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+      REACT_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Build de production
+        run: npm run build
+
+      - name: Sauvegarder les artifacts de build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: build/
+          retention-days: 1
+
+  # ──────────────────────────────────────────────
+  # 3. AUDIT DE SÉCURITÉ DES DÉPENDANCES (SCA)
+  # ──────────────────────────────────────────────
+  dependency-audit:
+    name: Audit dépendances (SCA)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: npm audit (vulnérabilités critiques et hautes)
+        # --audit-level=high bloque le CI si une vulnérabilité HIGH ou CRITICAL est détectée
+        run: npm audit --audit-level=high
+
+      - name: Vérification des licences
+        run: |
+          npx license-checker --onlyAllow "MIT;ISC;BSD-2-Clause;BSD-3-Clause;Apache-2.0;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Python-2.0;Unlicense;0BSD" \
+            --excludePrivatePackages \
+            --summary
+
+  # ──────────────────────────────────────────────
+  # 4. ANALYSE SAST — CodeQL
+  # ──────────────────────────────────────────────
+  codeql:
+    name: Analyse CodeQL (SAST)
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialisation CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          # Requêtes de sécurité étendues
+          queries: security-extended,security-and-quality
+
+      - name: Auto-build CodeQL
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Analyse CodeQL
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:javascript-typescript'
+
+  # ──────────────────────────────────────────────
+  # 5. DÉTECTION DE SECRETS (Secret Scanning)
+  # ──────────────────────────────────────────────
+  secret-scanning:
+    name: Détection de secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (historique complet)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog — Scan des secrets dans le repo
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+  # ──────────────────────────────────────────────
+  # 6. TESTS (dès qu'ils seront écrits)
+  # ──────────────────────────────────────────────
+  tests:
+    name: Tests unitaires & intégration
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Exécuter les tests avec couverture
+        run: npm test -- --coverage --watchAll=false --ci
+        env:
+          CI: true
+
+      - name: Upload couverture de code
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7

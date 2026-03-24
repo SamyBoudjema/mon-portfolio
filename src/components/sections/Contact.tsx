@@ -31,10 +31,13 @@ const schema = yup
   })
   .required();
 
+/**
+ * Composant du formulaire de contact avec validation et envoi EmailJS.
+ */
 const ContactForm: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { isVisible, domRef } = useIntersectionObserver({ threshold: 0.2 });
+  const { isVisible, domRef } = useIntersectionObserver<HTMLDivElement>({ threshold: 0.2 });
 
   const {
     register,
@@ -45,11 +48,13 @@ const ContactForm: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  // Récupération des variables d'environnement
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
   const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
+  /**
+   * Gère la soumission du formulaire.
+   */
   const onSubmit = async (): Promise<void> => {
     if (!form.current || !serviceId || !templateId || !publicKey) {
       toast.error('Configuration EmailJS manquante. Veuillez vérifier vos variables d\'environnement.');
@@ -74,10 +79,14 @@ const ContactForm: React.FC = () => {
         reset();
       })
       .catch((error) => {
-        console.log('Erreur détaillée EmailJS:', error);
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('Erreur détaillée EmailJS:', error);
+        }
       })
       .finally(() => {
-        setIsSubmitting(false);
+        setTimeout(() => {
+          setIsSubmitting(false);
+        }, 3000);
       });
   };
 
@@ -94,8 +103,9 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div className="input-group">
-            <label>Nom et Prénom *</label>
+            <label htmlFor="contact-name">Nom et Prénom *</label>
             <input
+              id="contact-name"
               type="text"
               placeholder="Votre nom et prénom"
               {...register('name')}
@@ -104,8 +114,9 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div className="input-group">
-            <label>Adresse e-mail *</label>
+            <label htmlFor="contact-email">Adresse e-mail *</label>
             <input
+              id="contact-email"
               type="email"
               placeholder="exemple@email.com"
               {...register('email')}
@@ -114,8 +125,9 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div className="input-group">
-            <label>Entreprise</label>
+            <label htmlFor="contact-company">Entreprise</label>
             <input
+              id="contact-company"
               type="text"
               placeholder="Votre entreprise (optionnel)"
               {...register('company')}
@@ -123,8 +135,9 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div className="input-group">
-            <label>Numéro de téléphone</label>
+            <label htmlFor="contact-phone">Numéro de téléphone</label>
             <input
+              id="contact-phone"
               type="tel"
               placeholder="+33 6 12 34 56 78"
               {...register('phone')}
@@ -133,8 +146,9 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div className="message-group">
-            <label>Message *</label>
+            <label htmlFor="contact-message">Message *</label>
             <textarea
+              id="contact-message"
               placeholder="Saisissez votre message ici..."
               {...register('message')}
             ></textarea>
@@ -151,7 +165,6 @@ const ContactForm: React.FC = () => {
                 'Envoyer'
               )}
             </button>
-            <input type="hidden" name="to_email" value="samy.bdm16@gmail.com" />
           </div>
         </form>
       </div>

@@ -6,13 +6,16 @@ interface IntersectionObserverOptions {
     triggerOnce?: boolean;
 }
 
-export const useIntersectionObserver = ({
+/**
+ * Hook personnalisé pour détecter la visibilité d'un élément à l'écran.
+ */
+export const useIntersectionObserver = <T extends HTMLElement = HTMLElement>({
     threshold = 0.1,
     rootMargin = '0px',
     triggerOnce = true,
 }: IntersectionObserverOptions = {}) => {
     const [isVisible, setIsVisible] = useState(false);
-    const domRef = useRef<HTMLDivElement>(null);
+    const domRef = useRef<T>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(

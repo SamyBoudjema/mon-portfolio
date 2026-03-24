@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Pied de page de l'application.
+ */
 const Footer: React.FC = () => {
   return (
     <footer>

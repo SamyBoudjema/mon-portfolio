@@ -1,16 +1,19 @@
 import React from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface SkillItemProps {
+export interface SkillItemProps {
   icon: string;
   name: string;
 }
 
-const SkillItem: React.FC<SkillItemProps> = ({ icon, name }) => {
+/**
+ * Composant affichant une compétence individuelle (icône et nom).
+ */
+export const SkillItem: React.FC<SkillItemProps> = ({ icon, name }) => {
   return (
     <div className="skill-item">
       <div className="skill-icon">
-        <i className={icon}></i>
+        <i className={icon} aria-hidden="true"></i>
       </div>
       <span className="skill-name">{name}</span>
     </div>
@@ -26,7 +29,7 @@ interface SkillCategoryProps {
 const SkillCategory: React.FC<SkillCategoryProps> = ({ title, icon, skills }) => {
   return (
     <div className="skills-category">
-      <h3><i className={icon}></i> {title}</h3>
+      <h3><i className={icon} aria-hidden="true"></i> {title}</h3>
       <div className="skills-items">
         {skills.map((skill, index) => (
           <SkillItem key={index} {...skill} />
@@ -36,69 +39,72 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ title, icon, skills }) =>
   );
 };
 
-const Skills: React.FC = () => {
-  const { isVisible, domRef } = useIntersectionObserver({ threshold: 0.1 });
+const skillsCategories: SkillCategoryProps[] = [
+  {
+    title: "Administration Système",
+    icon: "fas fa-server",
+    skills: [
+      { icon: "fab fa-windows", name: "Windows" },
+      { icon: "fab fa-linux", name: "Linux" }
+    ]
+  },
+  {
+    title: "Développement web & logiciel",
+    icon: "fas fa-code",
+    skills: [
+      { icon: "fab fa-js-square", name: "JavaScript" },
+      { icon: "fas fa-code", name: "TypeScript" },
+      { icon: "fab fa-react", name: "React" },
+      { icon: "fab fa-vuejs", name: "Vue.js" },
+      { icon: "fab fa-html5", name: "HTML/CSS" },
+      { icon: "fab fa-microsoft", name: ".NET / C#" },
+      { icon: "fab fa-python", name: "Python" },
+      { icon: "fas fa-terminal", name: "Bash" }
+    ]
+  },
+  {
+    title: "Mobile & XR",
+    icon: "fas fa-mobile-alt",
+    skills: [
+      { icon: "fab fa-swift", name: "SwiftUI (iOS)" },
+      { icon: "fab fa-android", name: "Java/Kotlin" },
+      { icon: "fab fa-unity", name: "Unity XR" }
+    ]
+  },
+  {
+    title: "DevOps",
+    icon: "fas fa-sync-alt",
+    skills: [
+      { icon: "fab fa-github", name: "GitHub Actions" },
+      { icon: "fab fa-gitlab", name: "GitLab CI/CD" },
+      { icon: "fab fa-docker", name: "Docker" }
+    ]
+  },
+  {
+    title: "Virtualisation",
+    icon: "fas fa-hdd",
+    skills: [
+      { icon: "fas fa-network-wired", name: "VMWare" },
+      { icon: "fas fa-box-open", name: "VirtualBox" },
+      { icon: "fab fa-microsoft", name: "Hyper-V" }
+    ]
+  },
+  {
+    title: "Data",
+    icon: "fas fa-database",
+    skills: [
+      { icon: "fas fa-map-marked-alt", name: "Cartographie" },
+      { icon: "fas fa-chart-bar", name: "Analyse" },
+      { icon: "fas fa-database", name: "BDD" }
+    ]
+  }
+];
 
-  const skillsCategories: SkillCategoryProps[] = [
-    {
-      title: "Administration Système",
-      icon: "fas fa-server",
-      skills: [
-        { icon: "fab fa-windows", name: "Windows" },
-        { icon: "fab fa-linux", name: "Linux" }
-      ]
-    },
-    {
-      title: "Développement web & logiciel",
-      icon: "fas fa-code",
-      skills: [
-        { icon: "fab fa-js-square", name: "JavaScript" },
-        { icon: "fas fa-code", name: "TypeScript" },
-        { icon: "fab fa-react", name: "React" },
-        { icon: "fab fa-vuejs", name: "Vue.js" },
-        { icon: "fab fa-html5", name: "HTML/CSS" },
-        { icon: "fab fa-microsoft", name: ".NET / C#" },
-        { icon: "fab fa-python", name: "Python" },
-        { icon: "fas fa-terminal", name: "Bash" }
-      ]
-    },
-    {
-      title: "Mobile & XR",
-      icon: "fas fa-mobile-alt",
-      skills: [
-        { icon: "fab fa-swift", name: "SwiftUI (iOS)" },
-        { icon: "fab fa-android", name: "Java/Kotlin" },
-        { icon: "fab fa-unity", name: "Unity XR" }
-      ]
-    },
-    {
-      title: "DevOps",
-      icon: "fas fa-sync-alt",
-      skills: [
-        { icon: "fab fa-github", name: "GitHub Actions" },
-        { icon: "fab fa-gitlab", name: "GitLab CI/CD" },
-        { icon: "fab fa-docker", name: "Docker" }
-      ]
-    },
-    {
-      title: "Virtualisation",
-      icon: "fas fa-hdd",
-      skills: [
-        { icon: "fas fa-network-wired", name: "VMWare" },
-        { icon: "fas fa-box-open", name: "VirtualBox" },
-        { icon: "fab fa-microsoft", name: "Hyper-V" }
-      ]
-    },
-    {
-      title: "Data",
-      icon: "fas fa-database",
-      skills: [
-        { icon: "fas fa-map-marked-alt", name: "Cartographie" },
-        { icon: "fas fa-chart-bar", name: "Analyse" },
-        { icon: "fas fa-database", name: "BDD" }
-      ]
-    }
-  ];
+/**
+ * Section présentant les catégories de compétences techniques.
+ */
+const Skills: React.FC = () => {
+  const { isVisible, domRef } = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
 
   return (
     <section id="competences" className="skills">

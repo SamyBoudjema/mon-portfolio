@@ -3,8 +3,11 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import backgroundImage from '../../assets/back_screen.avif';
 import cvFile from '../../assets/CV_SamyBoudjema.pdf';
 
+/**
+ * Composant de la section d'accueil (Hero).
+ */
 const Hero: React.FC = () => {
-  const { isVisible, domRef } = useIntersectionObserver();
+  const { isVisible, domRef } = useIntersectionObserver<HTMLDivElement>();
 
   return (
     <section id="accueil" className="hero" style={{ backgroundImage: `url(${backgroundImage})` }}>

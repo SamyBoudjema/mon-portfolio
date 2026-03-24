@@ -1,0 +1,60 @@
+version: 2
+
+updates:
+  # ──────────────────────────────────────────────
+  # Dépendances npm — Portfolio React
+  # ──────────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 10
+    # Regrouper les mises à jour mineures/patch pour limiter le bruit
+    groups:
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      testing-libraries:
+        patterns:
+          - "@testing-library/*"
+      dev-tools:
+        patterns:
+          - "typescript"
+          - "@types/node"
+          - "eslint*"
+    # Priorité aux mises à jour de sécurité (PRs séparées, appliquées immédiatement)
+    allow:
+      - dependency-type: "all"
+    ignore:
+      # Ne pas bumper react-scripts automatiquement (migration manuelle requise)
+      - dependency-name: "react-scripts"
+        update-types: ["version-update:semver-major"]
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+
+  # ──────────────────────────────────────────────
+  # GitHub Actions — Mise à jour des actions CI/CD
+  # ──────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(actions)"
