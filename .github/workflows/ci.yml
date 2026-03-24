@@ -42,7 +42,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    needs: lint-and-typecheck
+    needs: [lint-and-typecheck, dependency-audit, codeql, secret-scanning]
     env:
       # Variables d'environnement fictives pour valider la compilation
       # Les vraies valeurs sont dans les secrets GitHub (utilisées uniquement en CD)

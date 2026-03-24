@@ -4,13 +4,16 @@ import ContactForm from './Contact';
 
 // Mock du module EmailJS et react-hot-toast
 jest.mock('@emailjs/browser', () => ({
-  sendForm: jest.fn().mockResolvedValue({ status: 200, text: 'OK' }),
+  sendForm: () => Promise.resolve({ status: 200, text: 'OK' }),
 }));
 
 jest.mock('react-hot-toast', () => ({
-  promise: jest.fn().mockResolvedValue(true),
-  error: jest.fn(),
-  success: jest.fn(),
+  __esModule: true,
+  default: {
+    promise: () => Promise.resolve(true),
+    error: () => {},
+    success: () => {},
+  },
 }));
 
 // Remplace le module d'intersection observer
