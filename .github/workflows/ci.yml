@@ -66,7 +66,7 @@ jobs:
         run: npm run build
 
       - name: Sauvegarder les artifacts de build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build-artifacts
           path: build/
@@ -173,7 +173,7 @@ jobs:
           CI: true
 
       - name: Upload couverture de code
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-report
