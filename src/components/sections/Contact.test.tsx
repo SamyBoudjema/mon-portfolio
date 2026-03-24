@@ -43,11 +43,9 @@ describe('ContactForm Component', () => {
     fireEvent.submit(screen.getByRole('button', { name: /Envoyer/i }));
     
     // Vérifie les messages d'erreur via Yup / react-hook-form
-    await waitFor(() => {
-      expect(screen.getByText('Nom et Prénom sont obligatoires')).toBeInTheDocument();
-      expect(screen.getByText('Adresse e-mail est obligatoire')).toBeInTheDocument();
-      expect(screen.getByText('Message est obligatoire')).toBeInTheDocument();
-    });
+    expect(await screen.findByText('Nom et Prénom sont obligatoires')).toBeInTheDocument();
+    expect(screen.getByText('Adresse e-mail est obligatoire')).toBeInTheDocument();
+    expect(screen.getByText('Message est obligatoire')).toBeInTheDocument();
   });
 
   it('validates email format', async () => {
@@ -73,10 +71,10 @@ describe('ContactForm Component', () => {
     
     fireEvent.submit(screen.getByRole('button', { name: /Envoyer/i }));
     
+    // Les erreurs ne doivent pas être affichées
     await waitFor(() => {
-      // Les erreurs ne doivent pas être affichées
       expect(screen.queryByText('Nom et Prénom sont obligatoires')).not.toBeInTheDocument();
-      expect(screen.queryByText('Adresse e-mail est obligatoire')).not.toBeInTheDocument();
     });
+    expect(screen.queryByText('Adresse e-mail est obligatoire')).not.toBeInTheDocument();
   });
 });

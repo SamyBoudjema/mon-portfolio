@@ -18,7 +18,9 @@ describe('SkillItem Component', () => {
     expect(screen.getByText('React')).toBeInTheDocument();
     
     // Vérifie la présence de l'icône
+    // eslint-disable-next-line testing-library/no-node-access
     const iconWrapper = screen.getByText('React').previousSibling;
+    // eslint-disable-next-line testing-library/no-node-access
     const iconElement = iconWrapper?.firstChild as HTMLElement;
     expect(iconElement).toHaveClass('fab');
     expect(iconElement).toHaveClass('fa-react');
